@@ -50,8 +50,8 @@ function LoginForm({ setUser }) {
                     fullWidth
                     label="Username"
                     name="username"
-                    variant="outlined"
-                    color="primary"
+                    variant="standard"
+                    color="secondary"
                     size="small"
                     onChange={handleChange}
                     value={credentials.username}
@@ -62,8 +62,8 @@ function LoginForm({ setUser }) {
                     fullWidth
                     name="password"
                     label="Password"
-                    variant="outlined"
-                    color="primary"
+                    variant="standard"
+                    color="secondary"
                     size="small"
                     type="password"
                     onChange={handleChange}

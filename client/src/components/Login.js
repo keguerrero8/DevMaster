@@ -48,8 +48,8 @@ function Login( { setUser, theme } ) {
             <Typography component="h2" variant="subtitle2" sx={{ mt: 4}}>
             
             {/* {showLogin ? "Don't have an account?": "Already have an account?"}  */}
-            {showLogin ?  <> Don't have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}}>Sign up</Link> </> : 
-            <> Already have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}}>Log in</Link> </>} 
+            {showLogin ?  <> Don't have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}} color="secondary">Sign up</Link> </> : 
+            <> Already have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}} color="secondary">Log in</Link> </>} 
             </Typography>
             <Copyright sx={{ mt: 3 }}/>
             </Container>

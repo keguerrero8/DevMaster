@@ -53,8 +53,8 @@ function SignupForm({ setUser }) {
                 fullWidth
                 label="Username"
                 name="username"
-                variant="outlined"
-                color="primary"
+                variant="standard"
+                color="secondary"
                 size="small"
                 onChange={handleChange}
                 value={credentials.username}
@@ -65,8 +65,8 @@ function SignupForm({ setUser }) {
                 fullWidth
                 name="password"
                 label="Password"
-                variant="outlined"
-                color="primary"
+                variant="standard"
+                color="secondary"
                 size="small"
                 type="password"
                 onChange={handleChange}
@@ -78,8 +78,8 @@ function SignupForm({ setUser }) {
                 fullWidth
                 name="password_confirmation"
                 label="Password Confirmation"
-                variant="outlined"
-                color="primary"
+                variant="standard"
+                color="secondary"
                 size="small"
                 type="password"
                 onChange={handleChange}
@@ -90,8 +90,8 @@ function SignupForm({ setUser }) {
                 fullWidth
                 name="avatar"
                 label="Avatar url"
-                variant="outlined"
-                color="primary"
+                variant="standard"
+                color="secondary"
                 size="small"
                 onChange={handleChange}
                 value={credentials.avatar}
@@ -101,8 +101,8 @@ function SignupForm({ setUser }) {
                 fullWidth
                 name="github_username"
                 label="Github Username"
-                variant="outlined"
-                color="primary"
+                variant="standard"
+                color="secondary"
                 size="small"
                 onChange={handleChange}
                 value={credentials.github_username}
