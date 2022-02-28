@@ -12,6 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CableIcon from '@mui/icons-material/Cable';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
 //     {
@@ -30,12 +31,33 @@ import TextField from '@mui/material/TextField';
 //     // animated edge
 //     { id: "4", source: "1", target: "2", animated: true },
 //     { id: "5", source: "2", target: "3"},
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+        textAlign: "center"
+    };
   
   function DiagramPage() {
     const params = useParams()
+    const [connectUpdate, setConnectUpdate] = useState(null)
+    const [showUpdate, setShowUpdate] = useState(false)
+    const [formData, setFormData] = useState({ label: "" })
     const [elements, setElements] = useState([]);
     const [name, setName] = useState("")
     const [isNodeUpdated, setNodeUpdated] = useState(false)
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setShowUpdate(false)
+        setOpen(false)
+    };
     console.log(elements)
 
     useEffect(() => {
@@ -53,6 +75,7 @@ import TextField from '@mui/material/TextField';
                             id: node.id.toString(),
                             source: node.source, 
                             target: node.target,
+                            label: node.label
                         }
                 })
             setElements(clientData)
@@ -126,15 +149,37 @@ import TextField from '@mui/material/TextField';
     const handleEdgeClick = (event, element) => {
         console.log(element)
         if (element.source !== undefined) {
+            handleOpen()
+            setConnectUpdate(parseInt(element.id))
             console.log("modal to edit label")
         }
-    } 
+    }
+    
+    function handleSubmit(event){
+        event.preventDefault()
+        fetch(`/nodes/${connectUpdate}`, {
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(r => {
+            setNodeUpdated(!isNodeUpdated)
+            setShowUpdate(true)
+        })
+    }
+
+    function onChange(event){
+        const key= event.target.name;
+        const value = event.target.value;
+        setFormData({...formData, [key]:value})
+    }
   
     return (
         <>
         <Box sx={{width: "90%", margin: "20px auto", textAlign: "center"}}>
             <Typography component="h1" variant="h4" sx={{marginBottom: "10px"}}>About this tool:</Typography>
-            <Box sx={{margin: "20px auto"}}>
+            <Box sx={{margin: "40px auto"}}>
                 <List dense={true} sx={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "10px"}}>
                     <ListItem>
                     <ListItemIcon>
@@ -174,7 +219,40 @@ import TextField from '@mui/material/TextField';
             {/* <TextField size="small" name="title" label="Node name" variant="standard" onChange={e => setName(e.target.value)}/> */}
             <Button variant="contained" size="small" color="primary" onClick={addNode}>Create Node</Button>
         </Box>
-        <Box sx={{width: "90%", height: "90vh", margin: "20px auto", border: "solid", borderRadius: "20px"}}>
+        <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        >
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={style}>
+                    <TextField
+                        margin="normal"
+                        required
+                        label="Connection Name"
+                        name="label"
+                        variant="outlined"
+                        size="small"
+                        onChange={onChange}
+                        value={formData.label}
+                        fullWidth
+                        color="secondary"
+                    />
+                    {showUpdate ? <h4>Successfully updated!</h4> : null}
+                    <Box>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            fullWidth
+                            color="secondary"
+                        >
+                            Update 
+                        </Button>
+                    </Box>
+            </Box>
+        </Modal>       
+        <Box sx={{width: "90%", height: "90vh", margin: "30px auto", border: "solid", borderRadius: "20px"}}>
           <ReactFlow 
           elements={elements}
           onConnect={onConnect}
