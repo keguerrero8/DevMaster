@@ -2,8 +2,8 @@ class NodesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
     def create
-        graph = Graph.find(params[:graph_id])
-        node = graph.nodes.create!(node_params)
+        diagram = Diagram.find(params[:diagram_id])
+        node = diagram.nodes.create!(node_params)
         render json: node
     end
 
@@ -11,6 +11,11 @@ class NodesController < ApplicationController
         node = Node.find_by(id: params[:id])
         node.update!(node_params)
         render json: node
+    end
+
+    def deletes
+        params[:toRemove].each {|i| Node.find_by(id: i).destroy}
+        head :no_content
     end
 
     private

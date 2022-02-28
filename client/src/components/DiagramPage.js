@@ -75,7 +75,8 @@ import TextField from '@mui/material/TextField';
                             id: node.id.toString(),
                             source: node.source, 
                             target: node.target,
-                            label: node.label
+                            label: node.label,
+                            arrowHeadType: 'arrow'
                         }
                 })
             setElements(clientData)
@@ -126,7 +127,7 @@ import TextField from '@mui/material/TextField';
         })
         .then(res => res.json())
         .then(newConnect => {
-            setElements((els) => addEdge({id: newConnect.id.toString(), source: newConnect.source, target: newConnect.target}, els))
+            setElements((els) => addEdge({id: newConnect.id.toString(), source: newConnect.source, target: newConnect.target, arrowHeadType: 'arrow'}, els))
         })
     };
 
@@ -216,7 +217,6 @@ import TextField from '@mui/material/TextField';
                 </List>
             </Box>
             <input type="text" name="title" onChange={e => setName(e.target.value)} placeholder="Enter Node Name" id="create-node" />
-            {/* <TextField size="small" name="title" label="Node name" variant="standard" onChange={e => setName(e.target.value)}/> */}
             <Button variant="contained" size="small" color="primary" onClick={addNode}>Create Node</Button>
         </Box>
         <Modal
@@ -265,7 +265,7 @@ import TextField from '@mui/material/TextField';
               variant="dots"
               gap={12}
             />        
-            <MiniMap />
+            <MiniMap nodeColor="#14a37f"/>
             <Controls />
           </ReactFlow>
         </Box>

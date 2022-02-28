@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :tasks
+  resources :projects
   resources :nodes, only: [:create, :update]
   resources :diagrams, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:create] 
+  resources :users, only: [:create]
+  post "delete", to: "nodes#deletes" 
   get "me", to: "users#show" 
   post "login", to: "sessions#create" 
   delete "logout", to: "sessions#destroy" 
