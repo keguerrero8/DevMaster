@@ -6,3 +6,10 @@ body {
   margin: 0%;
   padding: 0%; 
 }
+
+#create-node {
+  border: none;
+  border-bottom: 3px solid #14a37f;
+  margin-right: 25px;
+  outline: none;
+}

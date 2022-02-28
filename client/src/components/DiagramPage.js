@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import ReactFlow, { removeElements, addEdge, Controls, MiniMap, Background } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MoveDownIcon from '@mui/icons-material/MoveDown';
+import AddIcon from '@mui/icons-material/Add';
+import CableIcon from '@mui/icons-material/Cable';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 //     {
 //       id: "1",
@@ -57,10 +69,8 @@ import { useParams } from 'react-router-dom'
         setElements((els) => removeElements(elementsToRemove, els))
     };
   
-
     //add node
     const addNode = () => {
-        // not sure if diagram_id is needed
         const node = {
             label: `${name}`,
             positionx: Math.random() * window.innerWidth,
@@ -112,29 +122,76 @@ import { useParams } from 'react-router-dom'
         .then(r => r.json())
         .then(setNodeUpdated(!isNodeUpdated))
       };
+
+    const handleEdgeClick = (event, element) => {
+        console.log(element)
+        if (element.source !== undefined) {
+            console.log("modal to edit label")
+        }
+    } 
   
     return (
-        <div style={{width: "100%", height: "90vh", margin: "auto"}}>
+        <>
+        <Box sx={{width: "90%", margin: "20px auto", textAlign: "center"}}>
+            <Typography component="h1" variant="h4" sx={{marginBottom: "10px"}}>About this tool:</Typography>
+            <Box sx={{margin: "20px auto"}}>
+                <List dense={true} sx={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "10px"}}>
+                    <ListItem>
+                    <ListItemIcon>
+                        <AddIcon color="secondary"/>
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Create nodes"
+                    />
+                    </ListItem>
+                    <ListItem>
+                    <ListItemIcon>
+                        <CableIcon color="secondary"/>
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Drag connections between nodes"
+                    />
+                    </ListItem>
+                    <ListItem>
+                    <ListItemIcon>
+                        <DeleteIcon color="secondary"/>
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Delete nodes with backspace key"
+                    />
+                    </ListItem>
+                    <ListItem>
+                    <ListItemIcon>
+                        <MoveDownIcon color="secondary"/>
+                    </ListItemIcon>
+                    <ListItemText
+                        primary="Drag nodes to reposition them"
+                    />
+                    </ListItem>
+                </List>
+            </Box>
+            <input type="text" name="title" onChange={e => setName(e.target.value)} placeholder="Enter Node Name" id="create-node" />
+            {/* <TextField size="small" name="title" label="Node name" variant="standard" onChange={e => setName(e.target.value)}/> */}
+            <Button variant="contained" size="small" color="primary" onClick={addNode}>Create Node</Button>
+        </Box>
+        <Box sx={{width: "90%", height: "90vh", margin: "20px auto", border: "solid", borderRadius: "20px"}}>
           <ReactFlow 
           elements={elements}
           onConnect={onConnect}
           onElementsRemove={onElementsRemove}
           onNodeDragStop={onNodeDragStop}
-          deleteKeyCode={8} 
+          deleteKeyCode={8}
+          onElementClick={handleEdgeClick}
           >
             <Background
               variant="dots"
               gap={12}
-              style={{backgroundColor: "lightBlue"}}
             />        
             <MiniMap />
             <Controls />
           </ReactFlow>
-          <div>
-            <input type="text" name="title" onChange={e => setName(e.target.value)}/>
-            <button type="button" onClick={addNode}>Add Node</button>
-          </div>
-        </div>
+        </Box>
+        </>
     );
   }
   
