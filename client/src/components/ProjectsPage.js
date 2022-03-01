@@ -105,6 +105,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
                                 Create 
                             </Button>
                         </Box>
+                        <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
                     </Box>
             </Modal>
             <Box sx={{width: "90%", margin: "20px auto"}}>

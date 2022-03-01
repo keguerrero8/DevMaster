@@ -105,6 +105,7 @@ function Diagrams() {
                             Create 
                         </Button>
                     </Box>
+                    <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
                 </Box>
         </Modal>
         <Divider textAlign="left">My Diagrams</Divider>

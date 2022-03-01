@@ -152,7 +152,6 @@ import TextField from '@mui/material/TextField';
         if (element.source !== undefined) {
             handleOpen()
             setConnectUpdate(parseInt(element.id))
-            console.log("modal to edit label")
         }
     }
     
@@ -250,6 +249,7 @@ import TextField from '@mui/material/TextField';
                             Update 
                         </Button>
                     </Box>
+                    <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
             </Box>
         </Modal>       
         <Box sx={{width: "90%", height: "90vh", margin: "30px auto", border: "solid", borderRadius: "20px"}}>
