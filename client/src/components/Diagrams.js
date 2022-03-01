@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Divider from '@mui/material/Divider';
 import DiagramCard from './DiagramCard';
-import Timeline from '@mui/lab/Timeline';
-import Modal from '@mui/material/Modal';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Typography, Modal, Divider, TextField, Button, Box, Grid } from '@mui/material';
 
 function Diagrams() {
     const [showUpdate, setShowUpdate] = useState(false)
@@ -27,8 +22,6 @@ function Diagrams() {
             setDiagrams(res)
         })
     }, [isDiagramChange])
-
-    // console.log(diagrams)
 
     const style = {
         position: 'absolute',
@@ -63,7 +56,7 @@ function Diagrams() {
     }
 
   return (
-    <Box sx={{margin: "auto", textAlign: "center", width: "80%"}}>
+    <Box sx={{margin: "auto", textAlign: "center", width: "85%"}}>
         <Button
             type="submit"
             variant="contained"
@@ -108,11 +101,12 @@ function Diagrams() {
                     <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
                 </Box>
         </Modal>
-        <Divider textAlign="left">My Diagrams</Divider>
-        <Box sx={{margin: "auto", width: "80%"}}>
-            <Timeline position="alternate">
+        <Divider sx={{my: "30px"}}/>
+        <Typography component="h1" variant="h3">My Diagrams</Typography>
+        <Box sx={{margin: "30px auto"}}>
+            <Grid container spacing={4}>
                 {diagrams.map((diagram) => <DiagramCard  diagram={diagram} key={diagram.id} isDiagramChange={isDiagramChange} setDiagramChange={setDiagramChange}/>)}
-            </Timeline>
+            </Grid>
         </Box>
     </Box>
 
