@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  resources :tasks
-  resources :projects
+  resources :tasks, only: [:create, :update, :destroy]
+  resources :projects, only: [:index, :show, :create, :destroy]
   resources :nodes, only: [:create, :update]
   resources :diagrams, only: [:index, :show, :create, :destroy]
   resources :users, only: [:create]

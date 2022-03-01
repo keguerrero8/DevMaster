@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Diagrams from './components/Diagrams';
 import { useEffect, useState } from 'react';
 import DiagramPage from './components/DiagramPage';
+import ProjectsPage from './components/ProjectsPage';
 
 function App( {theme}) {
   const [user, setUser] = useState(null)
@@ -32,6 +33,9 @@ function App( {theme}) {
           </Route>
           <Route exact path='/diagrams/:id'>
             <DiagramPage />
+          </Route>
+          <Route exact path="/projects">
+            <ProjectsPage />
           </Route>  
         </Switch>
     </>
