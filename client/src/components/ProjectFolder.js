@@ -56,8 +56,17 @@ import Column from "./Column";
 
     function onDragEnd (result) {
         const {destination, source, draggableId} = result
-        console.log(result)
-        // implement logic to rerender with state when tasks are moved around
+        if (!destination) return
+        if (destination.droppableId == source.droppableId ) return
+        fetch(`/tasks/${draggableId}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({status: destination.droppableId})
+        })
+        .then(r => r.json())
+        .then(r => setTaskUpdate((isTaskUpdate) => !isTaskUpdate))
       }
 
     function handleDelete (event) {

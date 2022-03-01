@@ -5,7 +5,7 @@ import Task from "./Task"
 function Column({column, tasks, setTaskUpdate}) {
   
     return (
-        <div style={{margin: "8px", border: "1px solid", width: "30%", minHeight: "100px", textAlign: "center"}}>
+        <div style={{margin: "8px", border: "1px solid", borderRadius: "10px", width: "30%", minHeight: "200px", textAlign: "center"}}>
             <div style={{backgroundColor: column.color, width: "90%", margin: "auto"}}>
                 <h1 style={{padding: "8px"}}>{column.title}</h1>
             </div>

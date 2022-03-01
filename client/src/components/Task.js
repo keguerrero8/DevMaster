@@ -14,7 +14,7 @@ function Task({task, index, setTaskUpdate}) {
   
     return (
         <Draggable draggableId={task.id} index={index} key={task.id}>
-        {(provided) => (
+        {(provided, snapshot) => (
             <div 
                 {...provided.draggableProps} 
                 {...provided.dragHandleProps} 

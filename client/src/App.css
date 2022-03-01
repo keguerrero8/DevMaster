@@ -15,8 +15,9 @@ body {
 }
 
 .tasks {
-  background-color:lightblue;
+  background-color: white;
   border: 1px solid;
+  border-radius: 10px;
   margin: 15px;
   padding: 8px;
 }
