@@ -13,3 +13,10 @@ body {
   margin-right: 25px;
   outline: none;
 }
+
+.tasks {
+  background-color:lightblue;
+  border: 1px solid;
+  margin: 15px;
+  padding: 8px;
+}

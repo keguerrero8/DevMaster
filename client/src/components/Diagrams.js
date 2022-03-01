@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-// import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import DiagramCard from './DiagramCard';
 import Timeline from '@mui/lab/Timeline';
@@ -41,6 +40,7 @@ function Diagrams() {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
+        textAlign: "center"
       };
 
     function handleSubmit(event){
