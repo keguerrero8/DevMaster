@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import ProjectFolder from './ProjectFolder';
-import Modal from '@mui/material/Modal';
+import { Divider, Typography, Modal, Button, TextField, Box } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import BarGraph from './BarGraph'
 
   function ProjectsPage() {
     const [showUpdate, setShowUpdate] = useState(false)
@@ -63,17 +61,22 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
   
     return (
         <Box sx={{textAlign: "center"}}>
-            <h2 style={{marginBottom: "40px"}}>Bar Graph component at the end here</h2>
-            <Button
-            type="submit"
-            variant="contained"
-            sx={{ mt: 3, mb: 2, mr: 5 }}
-            onClick={handleOpen}
-            color="secondary"
-            >
-                Create New Project Folder
-                <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
-            </Button>
+            <h2 style={{marginBottom: "40px"}}>Project Activity</h2>
+            <BarGraph projects={projects}/>
+            <Divider sx={{width: "90%", margin: "30px auto"}}/>
+            <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
+                <Typography component="h1" variant="h3" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
+                <Button
+                type="submit"
+                variant="contained"
+                sx={{ml: "auto", mb: 3}}
+                onClick={handleOpen}
+                color="secondary"
+                >
+                    Create New Project Folder
+                    <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
+                </Button>
+            </Box>
             <Modal
                 open={open}
                 onClose={handleClose}

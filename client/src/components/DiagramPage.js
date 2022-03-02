@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactFlow, { removeElements, addEdge, Controls, MiniMap, Background } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom'
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { Modal, TextField, Button, ListItemText, ListItemIcon, ListItem, List, Typography, Box } from '@mui/material';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
 import AddIcon from '@mui/icons-material/Add';
 import CableIcon from '@mui/icons-material/Cable';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
 
 
 //     {
@@ -182,37 +174,37 @@ import TextField from '@mui/material/TextField';
             <Typography component="h1" variant="h4" sx={{marginBottom: "10px"}}>About this tool:</Typography>
             <Box sx={{margin: "40px auto"}}>
                 <List dense={true} sx={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "10px"}}>
-                    <ListItem>
-                    <ListItemIcon>
-                        <AddIcon color="secondary"/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Create nodes"
-                    />
+                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                        <ListItemIcon>
+                            <AddIcon color="secondary"/>
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Create nodes"
+                        />
                     </ListItem>
-                    <ListItem>
-                    <ListItemIcon>
-                        <CableIcon color="secondary"/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Drag connections between nodes"
-                    />
+                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                        <ListItemIcon>
+                            <CableIcon color="secondary"/>
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Drag connections between nodes"
+                        />
                     </ListItem>
-                    <ListItem>
-                    <ListItemIcon>
-                        <DeleteIcon color="secondary"/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Delete nodes with backspace key"
-                    />
+                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                        <ListItemIcon>
+                            <DeleteIcon color="secondary"/>
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Delete nodes with backspace key"
+                        />
                     </ListItem>
-                    <ListItem>
-                    <ListItemIcon>
-                        <MoveDownIcon color="secondary"/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary="Drag nodes to reposition them"
-                    />
+                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                        <ListItemIcon>
+                            <MoveDownIcon color="secondary"/>
+                        </ListItemIcon>
+                        <ListItemText
+                            primary="Drag nodes to reposition them"
+                        />
                     </ListItem>
                 </List>
             </Box>

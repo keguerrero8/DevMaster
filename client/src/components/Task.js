@@ -4,12 +4,15 @@ import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../App.css';
 
-function Task({task, index, setTaskUpdate}) {
+function Task({task, index, setTaskUpdate, setProjectUpdate}) {
 
     function handleDelete () {
         fetch(`/tasks/${task.id}`, {
             method: 'DELETE'
-        }).then(res => setTaskUpdate((isTaskUpdate) => !isTaskUpdate))
+        }).then(res => {
+            setTaskUpdate((isTaskUpdate) => !isTaskUpdate)
+            setProjectUpdate((isProjectUpdate) => !isProjectUpdate)
+        })
     }
   
     return (

@@ -1,11 +1,8 @@
 import React from 'react'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom'
-import Grid from '@mui/material/Grid';
+import { Card, CardContent, Button, Typography, Grid } from '@mui/material';
 import AccountTree from '@mui/icons-material/AccountTree';
+import { Link } from 'react-router-dom'
+import '../App.css';
 
 function DiagramCard({ diagram , isDiagramChange, setDiagramChange}) {
 
@@ -17,7 +14,7 @@ function DiagramCard({ diagram , isDiagramChange, setDiagramChange}) {
 
   return (
     <Grid item xs={4} >
-        <Card sx={{ backgroundColor: "black" }} >
+        <Card sx={{ backgroundColor: "black", '&:hover': {transform: "scale(1.1)"} }} >
             <CardContent sx={{textAlign: "center"}}>
                 <AccountTree color="secondary" sx={{ fontSize: 100 }}/>
                 <Typography sx={{ fontSize: 18 }} color="white" gutterBottom>

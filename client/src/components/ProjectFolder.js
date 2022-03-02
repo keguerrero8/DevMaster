@@ -113,7 +113,7 @@ import Column from "./Column";
                     <div style={{display: "flex", justifyContent: "center"}}>
                         {columns.map(column => {
                             const filteredTasks = tasks.filter(task => task.status === column.title)
-                            return <Column key={column.id} column={column} tasks={filteredTasks} setTaskUpdate={setTaskUpdate}>{column.title}</Column>
+                            return <Column key={column.id} column={column} tasks={filteredTasks} setTaskUpdate={setTaskUpdate} setProjectUpdate={setProjectUpdate}>{column.title}</Column>
                         })}
                     </div>
                 </DragDropContext>
