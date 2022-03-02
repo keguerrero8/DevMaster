@@ -4,7 +4,7 @@ import { Divider, Typography, Modal, Button, TextField, Box } from '@mui/materia
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import BarGraph from './BarGraph'
 
-  function ProjectsPage() {
+  function ProjectsPage({user}) {
     const [showUpdate, setShowUpdate] = useState(false)
     const [formData, setFormData] = useState({ title: "" })
     const [projects, setProjects] = useState([])
@@ -16,7 +16,7 @@ import BarGraph from './BarGraph'
         setShowUpdate(false)
     };
 
-    console.log(projects)
+    // console.log(projects)
 
     useEffect(() => {
         fetch('/projects')
@@ -61,7 +61,7 @@ import BarGraph from './BarGraph'
   
     return (
         <Box sx={{textAlign: "center"}}>
-            <h2 style={{marginBottom: "40px"}}>Project Activity</h2>
+            <h2 style={{marginBottom: "40px"}}>Project Activity Summary</h2>
             <BarGraph projects={projects}/>
             <Divider sx={{width: "90%", margin: "30px auto"}}/>
             <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
@@ -112,7 +112,7 @@ import BarGraph from './BarGraph'
                     </Box>
             </Modal>
             <Box sx={{width: "90%", margin: "20px auto"}}>
-                {projects.map((project) => <ProjectFolder key={project.id} project={project} setProjectUpdate={setProjectUpdate}/>)}
+                {projects.map((project) => <ProjectFolder user={user} key={project.id} project={project} setProjectUpdate={setProjectUpdate}/>)}
             </Box>
         </Box>
     );

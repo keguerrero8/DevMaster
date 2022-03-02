@@ -35,7 +35,7 @@ function App( {theme}) {
             <DiagramPage />
           </Route>
           <Route exact path="/projects">
-            <ProjectsPage />
+            <ProjectsPage user={user}/>
           </Route>  
         </Switch>
     </>

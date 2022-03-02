@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FolderIcon from '@mui/icons-material/Folder';
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
+import GithubSearch from "./GithubSearch";
 
     const columns = [
         {id: "NotStarted", title: "Not Started", color: "#fa4d4d"},
@@ -12,8 +13,8 @@ import Column from "./Column";
     ]
 
 
-  function ProjectFolder({project, setProjectUpdate}) {
-    const {id, title, github_link} = project
+  function ProjectFolder({project, setProjectUpdate, user}) {
+    const {id, title} = project
     const [formData, setFormData] = useState({ content: "", status: "Not Started", project_id: id })
     const [expanded, setExpanded] = useState(false);
     const [tasks, setTasks] = useState([])
@@ -37,8 +38,6 @@ import Column from "./Column";
         })
     }, [isTaskUpdate])
 
-    // console.log(tasks)
-
     function handleAddTask () {
         fetch('/tasks', {
             method: 'POST',
@@ -46,7 +45,10 @@ import Column from "./Column";
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(r => setTaskUpdate((isTaskUpdate) => !isTaskUpdate))
+        .then(r => {
+            setProjectUpdate((isProjectUpdate) => !isProjectUpdate)
+            setTaskUpdate((isTaskUpdate) => !isTaskUpdate)
+        })
     }
 
     function onChangeAddTask(event){
@@ -67,7 +69,10 @@ import Column from "./Column";
             body: JSON.stringify({status: destination.droppableId})
         })
         .then(r => r.json())
-        .then(r => setTaskUpdate((isTaskUpdate) => !isTaskUpdate))
+        .then(r => {
+            setTaskUpdate((isTaskUpdate) => !isTaskUpdate)
+            setProjectUpdate((isProjectUpdate) => !isProjectUpdate)
+        })
       }
 
     function handleDelete (event) {
@@ -96,7 +101,8 @@ import Column from "./Column";
                 </Box>
             </AccordionSummary>
             <AccordionDetails>
-                <Box sx={{my: "25px"}}>
+                <Box sx={{my: "25px", display: "flex", justifyContent: "center"}}>
+                    <div>
                         <TextField 
                                 placeholder="New Task" 
                                 variant="standard" 
@@ -106,8 +112,10 @@ import Column from "./Column";
                                 name="content"
                         />
                         <Button sx={{ml: "20px"}} variant="contained" onClick={handleAddTask}>Create Task</Button>
-                        <Button sx={{ml: "20px"}} variant="contained" >Link Github repo</Button>
-                        {/* <Typography component="h2" variant="subtitle2" sx={{ ml: "50px"}}>Github Link: {github_link}</Typography> */}
+                    </div>
+                    <div style={{marginLeft: "80px"}}>
+                        {user ? user.github_username !== null ? <GithubSearch user={user} project={project} setProjectUpdate={setProjectUpdate}/> : null : null}
+                    </div>
                 </Box>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <div style={{display: "flex", justifyContent: "center"}}>
