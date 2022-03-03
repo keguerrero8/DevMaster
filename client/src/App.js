@@ -1,9 +1,9 @@
 import './App.css';
 import { Route, Switch } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Diagrams from './components/Diagrams';
-import { useEffect, useState } from 'react';
 import DiagramPage from './components/DiagramPage';
 import ProjectsPage from './components/ProjectsPage';
 import HomePage from './components/HomePage';

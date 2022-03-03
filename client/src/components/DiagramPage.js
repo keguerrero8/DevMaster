@@ -51,7 +51,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
         setShowUpdate(false)
         setOpen(false)
     };
-    console.log(elements)
+    // console.log(elements)
 
     useEffect(() => {
         fetch(`/diagrams/${params.id}`)
@@ -74,7 +74,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
                 })
             setElements(clientData)
         })
-    }, [isNodeUpdated])
+    }, [isNodeUpdated, params.id])
+    // }, [isNodeUpdated])
 
     const onElementsRemove = (elementsToRemove) => {
         const idsToRemove = elementsToRemove.map(e => parseInt(e.id))
@@ -141,7 +142,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
       };
 
     const handleEdgeClick = (event, element) => {
-        console.log(element)
         if (element.source !== undefined) {
             handleOpen()
             setConnectUpdate(parseInt(element.id))

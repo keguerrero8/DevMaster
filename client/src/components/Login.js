@@ -2,12 +2,7 @@ import * as React from 'react';
 import { useState } from "react";
 // import Avatar from '@mui/material/Avatar';
 // import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import Link from '@mui/material/Link';
+import { CssBaseline, Box, Typography, Container, Link, Divider } from '@mui/material';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 

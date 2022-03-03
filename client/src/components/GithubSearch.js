@@ -26,24 +26,27 @@ function GithubSearch({setProjectUpdate, user, project}) {
         textAlign: "center"
       };
 
-    useEffect(() => {
-        fetch(`https://api.github.com/users/${user.github_username}`)
-        .then(r => r.json())
-        .then(gitUser => setGitUserData(gitUser))
-    }, [])
-  
     // useEffect(() => {
-    //     // https://api.github.com/users/keguerrero8/repos?type=all&page=5
-    //     if (user.github_username === null) {
-    //         return
-    //     } else {
-    //         fetch(`https://api.github.com/users/${user.github_username}/repos`)
-    //         .then(r => r.json())
-    //         .then(githutProjects => setRepos(githutProjects))
-    //     }
+    //     fetch(`https://api.github.com/users/${user.github_username}`)
+    //     .then(r => r.json())
+    //     .then(gitUser => setGitUserData(gitUser))
+    // }, [user.github_username])
     // }, [])
 
     useEffect(() => {
+        let isActive = true
+        fetch(`https://api.github.com/users/${user.github_username}`)
+        .then(r => r.json())
+        .then(gitUser => {
+            if (isActive) {
+                setGitUserData(gitUser)
+            }
+        })
+        return () => { isActive = false }
+    }, [user.github_username])
+    
+    useEffect(() => {
+        let isActive = true
         if (gitUserData) {
             for (let i = 1; i <= Math.ceil(gitUserData.public_repos / 100); i++) {
                 if (i > 5) {
@@ -51,11 +54,32 @@ function GithubSearch({setProjectUpdate, user, project}) {
                 } else {
                     fetch(`https://api.github.com/users/${user.github_username}/repos?page=${i}&per_page=100`)
                     .then(r => r.json())
-                    .then(githutProjects => setRepos(prevRepos => [...prevRepos, ...githutProjects]))
+                    .then(githutProjects => {
+                        if (isActive) {
+                            setRepos(prevRepos => [...prevRepos, ...githutProjects])
+                        }
+                    })
                 }
             }
         }
-    }, [gitUserData])
+        return () => { isActive = false }
+    }, [gitUserData, user.github_username])
+  
+
+    // useEffect(() => {
+    //     if (gitUserData) {
+    //         for (let i = 1; i <= Math.ceil(gitUserData.public_repos / 100); i++) {
+    //             if (i > 5) {
+    //                 break
+    //             } else {
+    //                 fetch(`https://api.github.com/users/${user.github_username}/repos?page=${i}&per_page=100`)
+    //                 .then(r => r.json())
+    //                 .then(githutProjects => setRepos(prevRepos => [...prevRepos, ...githutProjects]))
+    //             }
+    //         }
+    //     }
+    // }, [gitUserData, user.github_username])
+    // }, [gitUserData])
   
     function handleSearch (event) {
       setSearchValue(event.target.value)

@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Button, TextField, Box, Typography } from '@mui/material';
 import { useHistory } from "react-router-dom";
 
 function LoginForm({ setUser }) {

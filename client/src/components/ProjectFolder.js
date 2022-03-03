@@ -22,21 +22,42 @@ import GithubSearch from "./GithubSearch";
     const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
+    
+    // original useEffect
+    // useEffect(() => {
+    //     fetch(`/projects/${id}`)
+    //     .then(r => r.json())
+    //     .then(projectTasks => {
+    //         const projectTasksFormatted = projectTasks.map((p) => {
+    //             return {
+    //                 id: p.id.toString(),
+    //                 content: p.content,
+    //                 status: p.status
+    //             }
+    //         })
+    //         setTasks(projectTasksFormatted)
+    //     })
+    // }, [isTaskUpdate, id])
+    // }, [isTaskUpdate])
 
     useEffect(() => {
-        fetch(`/projects/${project.id}`)
+        let isActive = true
+        fetch(`/projects/${id}`)
         .then(r => r.json())
         .then(projectTasks => {
-            const projectTasksFormatted = projectTasks.map((p) => {
-                return {
-                    id: p.id.toString(),
-                    content: p.content,
-                    status: p.status
-                }
-            })
-            setTasks(projectTasksFormatted)
+            if (isActive) {
+                const projectTasksFormatted = projectTasks.map((p) => {
+                    return {
+                        id: p.id.toString(),
+                        content: p.content,
+                        status: p.status
+                    }
+                })
+                setTasks(projectTasksFormatted)
+            }
         })
-    }, [isTaskUpdate])
+        return () => { isActive = false }
+    }, [isTaskUpdate, id])
 
     function handleAddTask () {
         fetch('/tasks', {

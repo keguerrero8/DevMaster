@@ -28,7 +28,7 @@ function HomePage({user}) {
                     </Typography>
                 </CardContent>
             </Card>
-            <img style={{width: "100%", height: "100%"}} src={"https://static.vecteezy.com/system/resources/thumbnails/005/241/954/small/abstract-gradient-gray-and-white-geometric-pattern-element-of-template-overlapping-design-for-tech-artwork-cover-page-background-illustration-vector.jpg"}/>
+            <img style={{width: "100%", height: "100%"}} alt="Home Page" src={"https://static.vecteezy.com/system/resources/thumbnails/005/241/954/small/abstract-gradient-gray-and-white-geometric-pattern-element-of-template-overlapping-design-for-tech-artwork-cover-page-background-illustration-vector.jpg"}/>
         </div>
         <Box sx={{textAlign: "center", mt: "20px"}}>
             <Typography component="h2" variant="h5" sx={{fontWeight: "bold"}}>{user ? "Use DevMaster" : "Why use DevMaster?"}</Typography>
