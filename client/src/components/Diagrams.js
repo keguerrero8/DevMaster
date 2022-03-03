@@ -105,7 +105,12 @@ function Diagrams() {
         <Typography component="h1" variant="h3">My Diagrams</Typography>
         <Box sx={{margin: "30px auto"}}>
             <Grid container spacing={4}>
-                {diagrams.map((diagram) => <DiagramCard  diagram={diagram} key={diagram.id} isDiagramChange={isDiagramChange} setDiagramChange={setDiagramChange}/>)}
+                {diagrams.map((diagram) => <DiagramCard  
+                    diagram={diagram} 
+                    key={diagram.id} 
+                    isDiagramChange={isDiagramChange} 
+                    setDiagramChange={setDiagramChange}
+                    />)}
             </Grid>
         </Box>
     </Box>

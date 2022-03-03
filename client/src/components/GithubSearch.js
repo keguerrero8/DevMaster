@@ -44,7 +44,6 @@ function GithubSearch({setProjectUpdate, user, project}) {
     // }, [])
 
     useEffect(() => {
-        // https://api.github.com/users/keguerrero8/repos?type=all&page=5
         if (gitUserData) {
             for (let i = 1; i <= Math.ceil(gitUserData.public_repos / 100); i++) {
                 if (i > 5) {
