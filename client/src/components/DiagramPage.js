@@ -245,7 +245,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
                     <Button onClick={handleClose} sx={{position: "absolute", right: "0px"}}>CLOSE</Button>
             </Box>
         </Modal>       
-        <Box sx={{width: "90%", height: "90vh", margin: "30px auto", border: "solid", borderRadius: "20px"}}>
+        <Box sx={{width: "90%", height: "70vh", margin: "30px auto", border: "solid", borderRadius: "20px"}}>
           <ReactFlow 
           elements={elements}
           onConnect={onConnect}

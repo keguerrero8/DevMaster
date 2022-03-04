@@ -112,7 +112,11 @@ import BarGraph from './BarGraph'
                     </Box>
             </Modal>
             <Box sx={{width: "90%", margin: "20px auto"}}>
-                {projects.map((project) => <ProjectFolder user={user} key={project.id} project={project} setProjectUpdate={setProjectUpdate}/>)}
+                {projects.map((project) => <ProjectFolder 
+                user={user} key={project.id} 
+                project={project} 
+                setProjectUpdate={setProjectUpdate}
+                />)}
             </Box>
         </Box>
     );
