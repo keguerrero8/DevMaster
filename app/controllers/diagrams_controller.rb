@@ -4,7 +4,8 @@ class DiagramsController < ApplicationController
     def index
         user = User.find_by(id: session[:user_id])
         if user
-            render json: user.diagrams
+            render json: {solo: user.diagrams.filter { |d| d.users.count == 1}, share: user.diagrams.filter { |d| d.users.count > 1}}
+            # render json: user.diagrams
         else
             render json: {errors: ["No user logged in"]}, status: 401
         end
@@ -39,7 +40,7 @@ class DiagramsController < ApplicationController
     private
 
     def diagram_params
-        params.permit(:name, :description, :user_id)
+        params.permit(:name, :description)
     end
 
     def render_invalid(invalid)

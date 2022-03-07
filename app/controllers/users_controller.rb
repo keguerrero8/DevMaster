@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+    def index
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: User.all
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
+    end
 
     def create 
         user = User.create!(user_params)

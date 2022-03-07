@@ -30,6 +30,12 @@ class ProjectsController < ApplicationController
         end
     end
 
+    def update
+        project = Project.find_by(id: params[:id])
+        project.update!(project_params)
+        render json: project
+    end
+
     def destroy
         project = Project.find_by(id: params[:id])
         project.destroy
@@ -39,7 +45,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:title, :github_link, :user_id)
+        params.permit(:title, :github_link)
     end
 
     def render_invalid(invalid)
