@@ -21,6 +21,16 @@ class DiagramsController < ApplicationController
         end
     end
 
+    def collab
+        user = User.find_by(id: session[:user_id])
+        diagram = Diagram.find_by(id: params[:id])
+        if user
+            render json: diagram.users
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
+    end
+
     def create
         user = User.find_by(id: session[:user_id])
         if user

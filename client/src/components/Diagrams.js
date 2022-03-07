@@ -23,7 +23,7 @@ function Diagrams({ user }) {
         })
     }, [isDiagramChange])
 
-    console.log(diagrams)
+    // console.log(diagrams)
 
     const style = {
         position: 'absolute',
@@ -47,7 +47,6 @@ function Diagrams({ user }) {
         })
         .then(res => res.json())
         .then(newDiagram => {
-            // setDiagrams([newDiagram,...diagrams])
             setDiagramChange((isDiagramChange) => !isDiagramChange)
             setShowUpdate(true)
         })

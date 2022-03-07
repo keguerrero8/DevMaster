@@ -26,13 +26,6 @@ function GithubSearch({setProjectUpdate, user, project}) {
         textAlign: "center"
       };
 
-    // useEffect(() => {
-    //     fetch(`https://api.github.com/users/${user.github_username}`)
-    //     .then(r => r.json())
-    //     .then(gitUser => setGitUserData(gitUser))
-    // }, [user.github_username])
-    // }, [])
-
     useEffect(() => {
         let isActive = true
         fetch(`https://api.github.com/users/${user.github_username}`)
@@ -66,21 +59,6 @@ function GithubSearch({setProjectUpdate, user, project}) {
         return () => { isActive = false }
     }, [gitUserData, user.github_username])
   
-
-    // useEffect(() => {
-    //     if (gitUserData) {
-    //         for (let i = 1; i <= Math.ceil(gitUserData.public_repos / 100); i++) {
-    //             if (i > 5) {
-    //                 break
-    //             } else {
-    //                 fetch(`https://api.github.com/users/${user.github_username}/repos?page=${i}&per_page=100`)
-    //                 .then(r => r.json())
-    //                 .then(githutProjects => setRepos(prevRepos => [...prevRepos, ...githutProjects]))
-    //             }
-    //         }
-    //     }
-    // }, [gitUserData, user.github_username])
-    // }, [gitUserData])
   
     function handleSearch (event) {
       setSearchValue(event.target.value)
@@ -135,8 +113,8 @@ function GithubSearch({setProjectUpdate, user, project}) {
                         <List sx={{margin: "auto", width: "90%"}}>
                             {filteredRepos.map((repo) => {
                                 return (
-                                    <ListItem onClick={handleGithubLink} key={repo.name}>
-                                        <ListItemText primary={repo.name} sx={{cursor: "pointer", padding: "5px", '&:hover': {backgroundColor: "lightblue"}}}/>
+                                    <ListItem onClick={handleGithubLink} key={repo.name} sx={{backgroundColor: "black", '&:hover': {backgroundColor: "#14a37f"}}}>
+                                        <ListItemText primary={repo.name} sx={{color: "white", cursor: "pointer", padding: "5px"}}/>
                                         <Divider />
                                     </ListItem>
                                 )

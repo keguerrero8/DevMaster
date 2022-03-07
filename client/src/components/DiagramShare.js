@@ -8,12 +8,14 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
     const [open, setOpen] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false)
     const [users, setUsers] = useState([])
+    const [collaborators, setCollaborators] = useState([])
     const [searchValue, setSearchValue] = useState("")
     const [errors, setErrors] = useState(null)
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false)
         setShowUpdate(false)
+        setDiagramChange((isChange => !isChange))
     };
 
     useEffect(() => {
@@ -24,7 +26,13 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
             })
     }, [])
 
-    // console.log(users)
+    useEffect(() => {
+        fetch(`/diagram-collaborators/${diagram.id}`)
+        .then(r => r.json())
+        .then(data => {
+            setCollaborators(data)
+            })
+    }, [])
 
     const style = {
         position: 'absolute',
@@ -53,8 +61,6 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
         .then(r => {
             if (r.ok) {
                 r.json().then(res => {
-                    // setErrors(null)
-                    // setDiagramChange((isChange => !isChange))
                     setOpen(true)
                     setShowUpdate(true)
                 })
@@ -86,6 +92,7 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+                    
                     <Typography component="h1" variant="h5">Share with people</Typography>
                     <TextField
                         margin="normal"
@@ -104,11 +111,27 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
                         <List sx={{margin: "auto", width: "90%"}}>
                             {filteredUsers.map((user) => {
                                 return (
-                                    <ListItem onClick={handleShare} key={user.id}>
+                                    <ListItem onClick={handleShare} key={user.id} sx={{backgroundColor: "black", '&:hover': {backgroundColor: "#14a37f"}}}>
                                         <ListItemAvatar>
                                             <Avatar src={user.avatar}/>
                                         </ListItemAvatar>
-                                        <ListItemText primary={user.username} sx={{cursor: "pointer", padding: "5px", '&:hover': {backgroundColor: "lightblue"}}}/>
+                                        <ListItemText primary={user.username} sx={{color: "white", cursor: "pointer", padding: "5px"}}/>
+                                        <Divider />
+                                    </ListItem>
+                                )
+                            })}
+                        </List>
+                    </Box>
+                    <Typography component="h1" variant="h5" sx={{mt: "20px"}}>Current Collaborators</Typography>
+                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "20vh", overflow: "scroll"}}>
+                        <List sx={{margin: "auto", width: "90%"}}>
+                            {collaborators.map((user) => {
+                                return (
+                                    <ListItem key={user.id} sx={{backgroundColor: "black", '&:hover': {backgroundColor: "#14a37f"}}}>
+                                        <ListItemAvatar>
+                                            <Avatar src={user.avatar}/>
+                                        </ListItemAvatar>
+                                        <ListItemText primary={user.username} sx={{color: "white"}}/>
                                         <Divider />
                                     </ListItem>
                                 )
