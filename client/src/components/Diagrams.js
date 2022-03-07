@@ -3,9 +3,9 @@ import DiagramCard from './DiagramCard';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Typography, Modal, Divider, TextField, Button, Box, Grid } from '@mui/material';
 
-function Diagrams() {
+function Diagrams({ user }) {
     const [showUpdate, setShowUpdate] = useState(false)
-    const [diagrams, setDiagrams] = useState([])
+    const [diagrams, setDiagrams] = useState({solo: [], share: []})
     const [formData, setFormData] = useState({ name: "" })
     const [isDiagramChange, setDiagramChange] = useState(false)
     const [open, setOpen] = useState(false);
@@ -22,6 +22,8 @@ function Diagrams() {
             setDiagrams(res)
         })
     }, [isDiagramChange])
+
+    console.log(diagrams)
 
     const style = {
         position: 'absolute',
@@ -45,7 +47,8 @@ function Diagrams() {
         })
         .then(res => res.json())
         .then(newDiagram => {
-            setDiagrams([newDiagram,...diagrams])
+            // setDiagrams([newDiagram,...diagrams])
+            setDiagramChange((isDiagramChange) => !isDiagramChange)
             setShowUpdate(true)
         })
     }
@@ -56,17 +59,19 @@ function Diagrams() {
     }
 
   return (
-    <Box sx={{margin: "auto", textAlign: "center", width: "85%"}}>
-        <Button
-            type="submit"
-            variant="contained"
-            sx={{ mt: 3, mb: 2, mr: 5 }}
-            onClick={handleOpen}
-            color="secondary"
-        >
-            Create A New Diagram
-            <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
-        </Button>
+    <Box sx={{margin: "auto", width: "85%"}}>
+        <Box sx={{margin: "auto", textAlign: "center"}}>
+            <Button
+                type="submit"
+                variant="contained"
+                sx={{ mt: 3, mb: 2, mr: 5 }}
+                onClick={handleOpen}
+                color="secondary"
+            >
+                Create A New Diagram
+                <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
+            </Button>
+        </Box>
         <Modal
             open={open}
             onClose={handleClose}
@@ -102,16 +107,38 @@ function Diagrams() {
                 </Box>
         </Modal>
         <Divider sx={{my: "30px"}}/>
-        <Typography component="h1" variant="h3">My Diagrams</Typography>
+        <Typography component="h1" variant="h4">My Diagrams</Typography>
         <Box sx={{margin: "30px auto"}}>
-            <Grid container spacing={4}>
-                {diagrams.map((diagram) => <DiagramCard  
-                    diagram={diagram} 
-                    key={diagram.id} 
-                    isDiagramChange={isDiagramChange} 
-                    setDiagramChange={setDiagramChange}
-                    />)}
-            </Grid>
+            {diagrams.solo.length > 0 ? (
+                <Grid container spacing={4}>
+                    {diagrams.solo.map((diagram) => <DiagramCard
+                        user={user}  
+                        diagram={diagram} 
+                        key={diagram.id} 
+                        isDiagramChange={isDiagramChange} 
+                        setDiagramChange={setDiagramChange}
+                        />)}
+                </Grid>
+            ) : (
+                <Typography component="h1" variant="h6">You have no Personal Diagrams</Typography>
+            )}
+        </Box>
+        <Divider sx={{my: "30px"}}/>
+        <Typography component="h1" variant="h4">Shared Diagrams</Typography>
+        <Box sx={{margin: "30px auto"}}>
+            {diagrams.share.length > 0 ? (
+                <Grid container spacing={4}>
+                    {diagrams.share.map((diagram) => <DiagramCard
+                        user={user}  
+                        diagram={diagram} 
+                        key={diagram.id} 
+                        isDiagramChange={isDiagramChange} 
+                        setDiagramChange={setDiagramChange}
+                        />)}
+                </Grid>
+            ) : (
+                <Typography component="h1" variant="h6">You have no Shared Diagrams</Typography>
+            )}
         </Box>
     </Box>
 

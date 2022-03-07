@@ -45,6 +45,7 @@ function GithubSearch({setProjectUpdate, user, project}) {
         return () => { isActive = false }
     }, [user.github_username])
     
+    // change to not limit 500 repos
     useEffect(() => {
         let isActive = true
         if (gitUserData) {

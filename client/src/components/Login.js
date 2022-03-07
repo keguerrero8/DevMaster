@@ -35,7 +35,7 @@ function Login( { setUser, theme } ) {
                     }}
                 >
                 <Typography component="h1" variant="h4" sx={{mt: "10px", mb: "10px"}}>
-                Sign In
+                {showLogin ? "Sign In" : "Sign up"}
                 </Typography>
                 {showLogin ? <LoginForm setUser={setUser} theme={theme}/> : <SignupForm setUser={setUser}/>}
             </Box>

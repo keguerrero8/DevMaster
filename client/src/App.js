@@ -30,7 +30,7 @@ function App( {theme}) {
           <Login setUser={setUser} theme={theme}/>
         </Route>
         <Route exact path="/diagrams">
-          <Diagrams />
+          <Diagrams user={user}/>
         </Route>
         <Route exact path='/diagrams/:id'>
           <DiagramPage />

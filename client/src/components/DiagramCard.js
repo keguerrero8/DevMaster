@@ -2,9 +2,10 @@ import React from 'react'
 import { Card, CardContent, Button, Typography, Grid } from '@mui/material';
 import AccountTree from '@mui/icons-material/AccountTree';
 import { Link } from 'react-router-dom'
+import DiagramShare from './DiagramShare';
 import '../App.css';
 
-function DiagramCard({ diagram , isDiagramChange, setDiagramChange}) {
+function DiagramCard({ diagram , isDiagramChange, setDiagramChange, user }) {
 
     function handleDelete () {
         fetch(`/diagrams/${diagram.id}`, {
@@ -14,7 +15,8 @@ function DiagramCard({ diagram , isDiagramChange, setDiagramChange}) {
 
   return (
     <Grid item xs={4} >
-        <Card sx={{ backgroundColor: "black", '&:hover': {transform: "scale(1.1)"} }} >
+        <Card sx={{ backgroundColor: "black", '&:hover': {transform: "scale(1.1)"}, position: "relative" }} >
+            <DiagramShare diagram={diagram} user={user} setDiagramChange={setDiagramChange}/>
             <CardContent sx={{textAlign: "center"}}>
                 <AccountTree color="secondary" sx={{ fontSize: 100 }}/>
                 <Typography sx={{ fontSize: 18 }} color="white" gutterBottom>
