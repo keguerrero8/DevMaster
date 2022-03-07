@@ -5,9 +5,10 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import GithubSearch from "./GithubSearch";
+import ProjectShare from './ProjectShare';
 
     const columns = [
-        {id: "NotStarted", title: "Not Started", color: "#fa4d4d"},
+        {id: "NotStarted", title: "Not Started", color: "#F93308"},
         {id: "InProgress", title: "In Progress", color: "#fad661"},
         {id: "Completed", title: "Completed", color: "#08c414"},
     ]
@@ -22,23 +23,6 @@ import GithubSearch from "./GithubSearch";
     const handleChange = (panel) => (event, isExpanded) => {
       setExpanded(isExpanded ? panel : false);
     };
-    
-    // original useEffect
-    // useEffect(() => {
-    //     fetch(`/projects/${id}`)
-    //     .then(r => r.json())
-    //     .then(projectTasks => {
-    //         const projectTasksFormatted = projectTasks.map((p) => {
-    //             return {
-    //                 id: p.id.toString(),
-    //                 content: p.content,
-    //                 status: p.status
-    //             }
-    //         })
-    //         setTasks(projectTasksFormatted)
-    //     })
-    // }, [isTaskUpdate, id])
-    // }, [isTaskUpdate])
 
     useEffect(() => {
         let isActive = true
@@ -121,7 +105,8 @@ import GithubSearch from "./GithubSearch";
                     <Button variant="outlined" size="small" color="secondary" onClick={handleDelete} sx={{zIndex: "30"}}>Delete</Button>
                 </Box>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails sx={{position: "relative"}}>
+                <ProjectShare project={project} user={user} setProjectUpdate={setProjectUpdate}/>
                 <Box sx={{my: "25px", display: "flex", justifyContent: "center"}}>
                     <div>
                         <TextField 

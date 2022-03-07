@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 
 
-function DiagramShare({ diagram, user, setDiagramChange }) {
+function ProjectShare({ project, user, setProjectUpdate }) {
     const [open, setOpen] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false)
     const [users, setUsers] = useState([])
@@ -15,7 +15,7 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
     const handleClose = () => {
         setOpen(false)
         setShowUpdate(false)
-        setDiagramChange((isChange => !isChange))
+        setProjectUpdate((isChange => !isChange))
     };
 
     useEffect(() => {
@@ -27,12 +27,12 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
     }, [])
 
     useEffect(() => {
-        fetch(`/diagram-collaborators/${diagram.id}`)
+        fetch(`/project-collaborators/${project.id}`)
         .then(r => r.json())
         .then(data => {
             setCollaborators(data)
             })
-    }, [diagram.id])
+    }, [project.id])
 
     const style = {
         position: 'absolute',
@@ -48,14 +48,14 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
     };
 
     function handleShare (event) {
-        fetch("/user_diagrams", {
+        fetch("/user_projects", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 user_id: users.find((user) => user.username === event.target.innerText).id,
-                diagram_id: diagram.id
+                project_id: project.id
             })
         })
         .then(r => {
@@ -83,7 +83,7 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
   return (
     <>
         <IconButton sx={{position: "absolute", right: "2px", top: "2px"}} onClick={handleOpen}>
-            <ShareIcon color="secondary" sx={{ fontSize: 30 }}/>
+            <ShareIcon color="secondary" sx={{ fontSize: 25 }}/>
         </IconButton>
         <Modal
                 open={open}
@@ -145,4 +145,4 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
   )
 }
 
-export default DiagramShare;
+export default ProjectShare;

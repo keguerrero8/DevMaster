@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 
   function BarGraph({projects}) {
 
-    const data = projects.map((project) => {
+    const data = [...projects.solo, ...projects.share].map((project) => {
         return {
             name: project.title,
             "Not Started" : project.tasks.filter(task => task.status === "Not Started").length,
@@ -30,9 +30,9 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Not Started" stackId="a" fill="black" />
-                <Bar dataKey="In Progress" stackId="a" fill="#82ca9d" />
-                <Bar dataKey="Completed" stackId="a" fill="#14a37f" />
+                <Bar dataKey="Not Started" stackId="a" fill="#F93308" />
+                <Bar dataKey="In Progress" stackId="a" fill="#fad661" />
+                <Bar dataKey="Completed" stackId="a" fill="#08c414" />
             </BarChart>
         </div>
     );

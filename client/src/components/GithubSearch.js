@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {Button, TextField, Box, Link, Modal, List, ListItem, ListItemText, Divider} from '@mui/material';
+import {Button, TextField, Box, Link, Modal, List, ListItem, ListItemText, Divider, Typography} from '@mui/material';
 
 function GithubSearch({setProjectUpdate, user, project}) {
+    const [errors, setErrors] = useState(null)
     const [open, setOpen] = useState(false);
     const [showUpdate, setShowUpdate] = useState(false)
     const [gitUserData, setGitUserData] = useState({})
@@ -29,10 +30,18 @@ function GithubSearch({setProjectUpdate, user, project}) {
     useEffect(() => {
         let isActive = true
         fetch(`https://api.github.com/users/${user.github_username}`)
-        .then(r => r.json())
-        .then(gitUser => {
-            if (isActive) {
-                setGitUserData(gitUser)
+        .then(r => {
+            if (r.ok) {
+                r.json().then(gitUser => {
+                    if (isActive) {
+                        setGitUserData(gitUser)
+                    }
+                })
+            }
+            else {
+                r.json().then((err) => {
+                    setErrors("No Github username found")
+                })
             }
         })
         return () => { isActive = false }
@@ -83,7 +92,7 @@ function GithubSearch({setProjectUpdate, user, project}) {
 
   return (
     <>
-        {project.github_link ? (
+        {errors ? <Typography variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{errors}</Typography> : project.github_link ? (
             <>
                 <Link href={project.github_link}>Github Repo Link</Link>
                 <Button sx={{ml: "20px"}} variant="contained" onClick={handleOpen}>Update Github Repo Link</Button>

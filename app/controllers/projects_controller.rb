@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
     def index
         user = User.find_by(id: session[:user_id])
         if user
-            render json: user.projects
+            render json: {solo: user.projects.filter { |p| p.users.count == 1}, share: user.projects.filter { |p| p.users.count > 1}}, include: ["tasks"]
+            # render json: user.projects
         else
             render json: {errors: ["No user logged in"]}, status: 401
         end
@@ -15,6 +16,16 @@ class ProjectsController < ApplicationController
         project = Project.find_by(id: params[:id])
         if user
             render json: project.tasks
+        else
+            render json: {errors: ["No user logged in"]}, status: 401
+        end
+    end
+
+    def collab
+        user = User.find_by(id: session[:user_id])
+        project = Project.find_by(id: params[:id])
+        if user
+            render json: project.users
         else
             render json: {errors: ["No user logged in"]}, status: 401
         end

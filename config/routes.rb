@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :diagrams, only: [:index, :show, :create, :destroy]
   resources :users, only: [:index, :create]
   get "diagram-collaborators/:id", to: "diagrams#collab"
+  get "project-collaborators/:id", to: "projects#collab"
   post "delete", to: "nodes#deletes" 
   get "me", to: "users#show" 
   post "login", to: "sessions#create" 

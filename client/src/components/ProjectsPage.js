@@ -7,7 +7,8 @@ import BarGraph from './BarGraph'
   function ProjectsPage({user}) {
     const [showUpdate, setShowUpdate] = useState(false)
     const [formData, setFormData] = useState({ title: "" })
-    const [projects, setProjects] = useState([])
+    // const [projects, setProjects] = useState([])
+    const [projects, setProjects] = useState({solo: [], share: []})
     const [isProjectUpdate, setProjectUpdate] = useState(false)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -60,12 +61,14 @@ import BarGraph from './BarGraph'
       };
   
     return (
-        <Box sx={{textAlign: "center"}}>
-            <h2 style={{marginBottom: "40px"}}>Project Activity Summary</h2>
+        <Box >
+            <Box sx={{width: "90%", margin: "auto", textAlign: "center"}}>
+                <h2 style={{marginBottom: "40px"}}>Project Activity Summary</h2>
+            </Box>
             <BarGraph projects={projects}/>
             <Divider sx={{width: "90%", margin: "30px auto"}}/>
             <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
-                <Typography component="h1" variant="h3" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
+                <Typography component="h1" variant="h4" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
                 <Button
                 type="submit"
                 variant="contained"
@@ -112,11 +115,35 @@ import BarGraph from './BarGraph'
                     </Box>
             </Modal>
             <Box sx={{width: "90%", margin: "20px auto"}}>
-                {projects.map((project) => <ProjectFolder 
+                {projects.solo.length > 0 ? (
+                    <>
+                        {projects.solo.map((project) => <ProjectFolder 
+                        user={user} key={project.id} 
+                        project={project} 
+                        setProjectUpdate={setProjectUpdate}
+                        />)}
+                    </>
+                ) : <Typography component="h1" variant="h6">You have no Personal Projects</Typography>}
+                {/* {projects.map((project) => <ProjectFolder 
                 user={user} key={project.id} 
                 project={project} 
                 setProjectUpdate={setProjectUpdate}
-                />)}
+                />)} */}
+            </Box>
+            <Divider sx={{width: "90%", margin: "30px auto"}}/>
+            <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
+                <Typography component="h1" variant="h4" sx={{mr: "auto", mb: 3}}>Shared Projects</Typography>
+            </Box>
+            <Box sx={{width: "90%", margin: "20px auto"}}>
+                {projects.share.length > 0 ? (
+                    <>
+                        {projects.share.map((project) => <ProjectFolder 
+                        user={user} key={project.id} 
+                        project={project} 
+                        setProjectUpdate={setProjectUpdate}
+                        />)}
+                    </>
+                ) : <Typography component="h1" variant="h6">You have no Shared Projects</Typography>}
             </Box>
         </Box>
     );
