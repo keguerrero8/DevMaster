@@ -149,7 +149,10 @@ const NavBar = ({ user, setUser }) => {
                 onClose={handleCloseUserMenu}
                 >
                     <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/" onClick={handleLogOutClick}>Log out</NavLink></Typography>
+                      <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/account" >Account</NavLink></Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/" onClick={handleLogOutClick}>Log out</NavLink></Typography>
                     </MenuItem>
                 </Menu>             
              </> : 

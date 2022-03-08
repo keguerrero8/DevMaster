@@ -7,6 +7,7 @@ import Diagrams from './components/Diagrams';
 import DiagramPage from './components/DiagramPage';
 import ProjectsPage from './components/ProjectsPage';
 import HomePage from './components/HomePage';
+import Account from './components/Account';
 
 function App( {theme}) {
   const [user, setUser] = useState(null)
@@ -37,7 +38,10 @@ function App( {theme}) {
         </Route>
         <Route exact path="/projects">
           <ProjectsPage user={user}/>
-        </Route>  
+        </Route> 
+        <Route exact path="/account">
+          {user ? <Account user={user} setUser={setUser}/> : null}
+        </Route>   
       </Switch>
     </>
   );

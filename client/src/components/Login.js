@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from "react";
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import { CssBaseline, Box, Typography, Container, Link, Divider } from '@mui/material';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import logo from "../DevMasterLogo.png"
 
 function Copyright(props) {
   return (
@@ -34,7 +34,8 @@ function Login( { setUser, theme } ) {
                     alignItems: 'center',
                     }}
                 >
-                <Typography component="h1" variant="h4" sx={{mt: "10px", mb: "10px"}}>
+                <Avatar src={logo} sx={{ width: 96, height: 96 }}/>
+                <Typography component="h1" variant="h4" sx={{my: "20px"}}>
                 {showLogin ? "Sign In" : "Sign up"}
                 </Typography>
                 {showLogin ? <LoginForm setUser={setUser} theme={theme}/> : <SignupForm setUser={setUser}/>}
@@ -46,7 +47,7 @@ function Login( { setUser, theme } ) {
             {showLogin ?  <> Don't have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}} color="secondary">Sign up</Link> </> : 
             <> Already have an account? <Link onClick={handleClick} sx={{cursor: "pointer"}} color="secondary">Log in</Link> </>} 
             </Typography>
-            <Copyright sx={{ mt: 3 }}/>
+            <Copyright sx={{ my: "20px" }}/>
             </Container>
     );
 }

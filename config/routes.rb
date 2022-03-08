@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show, :create, :destroy, :update]
   resources :nodes, only: [:create, :update]
   resources :diagrams, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:index, :create]
+  resources :users, only: [:index, :create, :update]
   get "diagram-collaborators/:id", to: "diagrams#collab"
   get "project-collaborators/:id", to: "projects#collab"
   post "delete", to: "nodes#deletes" 
