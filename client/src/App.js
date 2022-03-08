@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Diagrams from './components/Diagrams';
 import DiagramPage from './components/DiagramPage';
 import ProjectsPage from './components/ProjectsPage';
+import ChatPage from './components/ChatPage';
 import HomePage from './components/HomePage';
 import Account from './components/Account';
 
@@ -39,8 +40,11 @@ function App( {theme}) {
         <Route exact path="/projects">
           <ProjectsPage user={user}/>
         </Route> 
+        <Route exact path="/chats">
+          <ChatPage user={user}/>
+        </Route> 
         <Route exact path="/account">
-          {user ? <Account user={user} setUser={setUser}/> : null}
+          <Account user={user} setUser={setUser}/>
         </Route>   
       </Switch>
     </>

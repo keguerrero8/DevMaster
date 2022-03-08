@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :messages
+  resources :conversations
   resources :user_projects
   resources :user_diagrams
   resources :tasks, only: [:create, :update, :destroy]

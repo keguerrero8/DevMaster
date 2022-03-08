@@ -89,6 +89,11 @@ const NavBar = ({ user, setUser }) => {
                         <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/projects">Projects</NavLink></Typography>
                     </MenuItem>
                 : null }
+                {user ? 
+                    <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center"><NavLink style={{color: "black", textDecoration: "none"}} to="/chats">Chats</NavLink></Typography>
+                    </MenuItem>
+                : null }
             </Menu>
           </Box>
           <Typography
@@ -119,6 +124,12 @@ const NavBar = ({ user, setUser }) => {
                     sx={{ my: 2, color: '#14a37f', display: 'block' }}
                 >
                     <NavLink style={{color: "#14a37f", textDecoration: "none"}} to="/projects">Projects</NavLink>
+                </Button>
+                <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: '#14a37f', display: 'block' }}
+                >
+                    <NavLink style={{color: "#14a37f", textDecoration: "none"}} to="/chats">Chats</NavLink>
                 </Button>
              </>
              : null}

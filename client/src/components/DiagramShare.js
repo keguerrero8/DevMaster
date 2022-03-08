@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, TextField, Box, Modal, List, ListItem, ListItemText, ListItemAvatar, Divider, Typography, Avatar} from '@mui/material';
-import { IconButton } from '@mui/material';
+import {Button, TextField, Box, Modal, List, ListItem, ListItemText, ListItemAvatar, Divider, Typography, Avatar, IconButton} from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 
 
