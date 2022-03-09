@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import { Box, Typography, TextField, Button, Avatar } from '@mui/material';
+import React, {useEffect, useState, useRef} from 'react'
+import { Box, Typography, TextField, Button, Avatar} from '@mui/material';
 import ChatInvite from './ChatInvite';
+import { createConsumer } from "@rails/actioncable"
 
 
 function ChatContent({ user, currentConversation, setConvoUpdate }) {
@@ -8,13 +9,38 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
   const [messages, setMessages] = useState([])
   const [messageUpdate, setMessageUpdate] = useState(false)
 
-  console.log(currentConversation)
+  useEffect(() => {
+    const cable = createConsumer("ws://localhost:3000/cable")
+
+    const paramsToSend = {
+        channel: "ConversationChannel",
+        id: currentConversation.id
+    }
+    const handlers = {
+        received(data) {
+          console.log(data)
+          setMessageUpdate(messageUpdate => !messageUpdate)
+        },
+        connected() {
+            console.log("connected")
+        },
+        disconnected() {
+            console.log("disconnected")
+        }
+    }
+    const subscription = cable.subscriptions.create(paramsToSend, handlers)
+
+    return function cleanup() {
+        console.log("unsubbing from ", currentConversation.id)
+        subscription.unsubscribe()
+    }
+  }, [messages])
+
 
   useEffect(() => {
     fetch(`/conversations/${currentConversation.id}`)
     .then(r => r.json())
     .then(data => {
-      console.log(data)
       setMessages(data)
     })
   }, [messageUpdate, currentConversation.id])
@@ -28,7 +54,6 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
     })
     .then(res => res.json())
     .then(r => {
-        console.log(r)
         setMessageUpdate((messageUpdate) => !messageUpdate)
     })
 
@@ -39,6 +64,13 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
     const value = event.target.value;
     setFormData({...formData, [key]:value})
   }
+
+  // function handleDelete (e) {
+  //   console.log(e.target)
+  //   fetch(`/messages${diagram.id}`, {
+  //     method: 'DELETE'
+  //   }).then(res => setDiagramChange(!isDiagramChange))
+  // }
 
   return (
     <>
@@ -53,6 +85,7 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
                     <Box sx={{maxWidth: "60%", alignSelf: "flex-start", my: "3px"}} key={m.id}>
                       <Box sx={{backgroundColor: "#14a37f", padding: "15px", borderRadius: "30px 30px 30px 1px"}}>
                         <Typography component="div" variant="h7" >{m.content}</Typography>
+                        {/* <Typography component="div" variant="h7" ><ClearIcon onClick={handleDelete} sx={{height: 13, width: 13, cursor: "pointer"}}/> {m.content}</Typography> */}
                       </Box>
                       <Avatar alt={user.username} src={user.avatar} sx={{height: 20, width: 20}}/>
                     </Box>

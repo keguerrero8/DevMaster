@@ -7,7 +7,6 @@ import BarGraph from './BarGraph'
   function ProjectsPage({user}) {
     const [showUpdate, setShowUpdate] = useState(false)
     const [formData, setFormData] = useState({ title: "" })
-    // const [projects, setProjects] = useState([])
     const [projects, setProjects] = useState({solo: [], share: []})
     const [isProjectUpdate, setProjectUpdate] = useState(false)
     const [open, setOpen] = useState(false);
@@ -16,8 +15,6 @@ import BarGraph from './BarGraph'
         setOpen(false)
         setShowUpdate(false)
     };
-
-    // console.log(projects)
 
     useEffect(() => {
         let isActive = true
