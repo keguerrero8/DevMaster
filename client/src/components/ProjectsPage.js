@@ -20,11 +20,15 @@ import BarGraph from './BarGraph'
     // console.log(projects)
 
     useEffect(() => {
+        let isActive = true
         fetch('/projects')
         .then(r => r.json())
         .then(res => {
-            setProjects(res)
+            if (isActive) {
+                setProjects(res)
+            }
         })
+        return () => { isActive = false }
     }, [isProjectUpdate])
 
     function handleCreateProject (event) {

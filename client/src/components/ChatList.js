@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Box, Button, Typography, TextField, Modal, List, ListItem, ListItemText, ListItemAvatar, Divider, Avatar, AvatarGroup } from '@mui/material';
 import MessageIcon from '@mui/icons-material/Message';
 
-function ChatList({setCurrentConversation}) {
+function ChatList({setCurrentConversation, conversations, setConvoUpdate}) {
     const [formData, setFormData] = useState({ title: "" })
     const [showUpdate, setShowUpdate] = useState(false)
-    const [conversations, setConversations] = useState([])
-    const [convoUpdate, setConvoUpdate] = useState(false)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -14,13 +12,14 @@ function ChatList({setCurrentConversation}) {
         setShowUpdate(false)
     };
 
-    useEffect(() => {
-        fetch('/conversations')
-        .then(r => r.json())
-        .then(res => {
-            setConversations(res)
-        })
-    }, [convoUpdate])
+    // useEffect(() => {
+    //     fetch('/conversations')
+    //     .then(r => r.json())
+    //     .then(res => {
+    //         // console.log(res)
+    //         setConversations(res)
+    //     })
+    // }, [convoUpdate])
 
     // console.log(conversations)
 
@@ -64,7 +63,7 @@ function ChatList({setCurrentConversation}) {
 
   return (
     <>
-    <Box sx={{border: "solid black", width: "100%", height: "85vh", textAlign: "center", borderRadius: "20px", backgroundColor: "black"}}>
+    <Box sx={{width: "100%", height: "85vh", textAlign: "center", borderRadius: "20px", backgroundColor: "black"}}>
         <Button
             variant="contained"
             sx={{ my: "20px", mb: 2}}
@@ -75,19 +74,21 @@ function ChatList({setCurrentConversation}) {
             <MessageIcon sx={{mr: 1}}></MessageIcon>
             New Conversation
         </Button>
-        <Typography component="h1" variant="h4" sx={{fontWeight: "bold", color: "white"}}>Chats</Typography>
-        <List sx={{margin: "auto", width: "95%"}}>
+        <Typography component="h1" variant="h4" sx={{fontWeight: "bold", color: "white", my: "20px"}}>Chats</Typography>
+        <List sx={{margin: "auto", width: "90%", overflow: "auto"}}>
             {conversations.map(convo => {
                 return (
-                    <ListItem onClick={handleClick}  key={convo.id} sx={{backgroundColor: "white", '&:hover': {backgroundColor: "#14a37f"}}}>
-                        <ListItemAvatar>
-                            <AvatarGroup >
-                                {convo.users.map(u => <Avatar key={u.id} alt={u.username} src={u.avatar}/>)}
-                            </AvatarGroup>
-                        </ListItemAvatar>
-                        <ListItemText primary={convo.title} sx={{color: "black", cursor: "pointer", padding: "5px"}}/>
+                    <Box key={convo.id}>
+                        <ListItem onClick={handleClick} sx={{backgroundColor: "white", '&:hover': {backgroundColor: "#14a37f"}}}>
+                            <ListItemAvatar>
+                                <AvatarGroup >
+                                    {convo.participants.map(u => <Avatar key={u.id} alt={u.username} src={u.avatar}/>)}
+                                </AvatarGroup>
+                            </ListItemAvatar>
+                            <ListItemText primary={convo.title} sx={{color: "black", cursor: "pointer", padding: "5px"}}/>
+                        </ListItem>
                         <Divider />
-                    </ListItem>
+                    </Box>
                 )
             })}
         </List>

@@ -1,4 +1,7 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id, :title
-  has_many :users
+  attributes :id, :title, :participants
+
+  def participants
+    self.object.users.uniq
+  end
 end

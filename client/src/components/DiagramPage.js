@@ -7,23 +7,6 @@ import AddIcon from '@mui/icons-material/Add';
 import CableIcon from '@mui/icons-material/Cable';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
-//     {
-//       id: "1",
-//       type: 'input', // input node
-//       data: { label: 'Input Node' },
-//       position: { x: 150, y: 25 }
-//     },
-//     // default node has no type
-//     {
-//       id: "3",
-//       type: 'output', // output node
-//       data: { label: 'Output Node how much can I fit in here ' },
-//       position: { x: 250, y: 250 },
-//     },
-//     // animated edge
-//     { id: "4", source: "1", target: "2", animated: true },
-//     { id: "5", source: "2", target: "3"},
     const style = {
         position: 'absolute',
         top: '50%',
@@ -51,7 +34,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
         setShowUpdate(false)
         setOpen(false)
     };
-    // console.log(elements)
 
     useEffect(() => {
         fetch(`/diagrams/${params.id}`)
@@ -75,7 +57,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
             setElements(clientData)
         })
     }, [isNodeUpdated, params.id])
-    // }, [isNodeUpdated])
 
     const onElementsRemove = (elementsToRemove) => {
         const idsToRemove = elementsToRemove.map(e => parseInt(e.id))

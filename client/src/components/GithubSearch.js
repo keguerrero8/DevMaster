@@ -118,7 +118,7 @@ function GithubSearch({setProjectUpdate, user, project}) {
                         color="secondary"
                     />
                     {showUpdate ? <h4>Successfully Linked!</h4> : null}
-                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "60vh", overflow: "scroll"}}>
+                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "60vh", overflow: "auto"}}>
                         <List sx={{margin: "auto", width: "90%"}}>
                             {filteredRepos.map((repo) => {
                                 return (

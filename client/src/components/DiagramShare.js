@@ -18,19 +18,27 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
     };
 
     useEffect(() => {
+        let isActive = true
         fetch("/users")
         .then(r => r.json())
         .then(data => {
-            setUsers(data)
-            })
+            if (isActive) {
+                setUsers(data)
+            }
+        })
+        return () => { isActive = false }
     }, [])
 
     useEffect(() => {
+        let isActive = true
         fetch(`/diagram-collaborators/${diagram.id}`)
         .then(r => r.json())
         .then(data => {
-            setCollaborators(data)
-            })
+            if (isActive) {
+                setCollaborators(data)
+            }
+        })
+        return () => { isActive = false }
     }, [diagram.id])
 
     const style = {
@@ -106,7 +114,7 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
                     />
                     {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
                     {showUpdate ? <h4>Successfully Shared!</h4> : null}
-                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "60vh", overflow: "scroll"}}>
+                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "60vh", overflow: "auto"}}>
                         <List sx={{margin: "auto", width: "90%"}}>
                             {filteredUsers.map((user) => {
                                 return (
@@ -122,7 +130,7 @@ function DiagramShare({ diagram, user, setDiagramChange }) {
                         </List>
                     </Box>
                     <Typography component="h1" variant="h5" sx={{mt: "20px"}}>Current Collaborators</Typography>
-                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "20vh", overflow: "scroll"}}>
+                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "20vh", overflow: "auto"}}>
                         <List sx={{margin: "auto", width: "90%"}}>
                             {collaborators.map((user) => {
                                 return (

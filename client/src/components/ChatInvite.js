@@ -3,7 +3,7 @@ import { Box, Button, Typography, Modal, IconButton, List, ListItem, ListItemTex
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 
-function ChatInvite({ user, currentConversation }) {
+function ChatInvite({ user, currentConversation, setConvoUpdate }) {
   const [open, setOpen] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false)
   const [users, setUsers] = useState([])
@@ -41,7 +41,7 @@ function ChatInvite({ user, currentConversation }) {
   }
 
   function handleShare (event) {
-    fetch("/messages", {
+    fetch("/conversation-invite", {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -56,6 +56,7 @@ function ChatInvite({ user, currentConversation }) {
             r.json().then(res => {
                 setOpen(true)
                 setShowUpdate(true)
+                setConvoUpdate(isUpdate => !isUpdate)
             })
         }
         else {
@@ -96,7 +97,7 @@ function ChatInvite({ user, currentConversation }) {
                     />
                     {errors ? errors.map((e) => <Typography key={e} variant="subtitle1" component="h2" gutterBottom sx={{color: "red"}}>{e} </Typography>) : null}
                     {showUpdate ? <h4>User invited to conversation!</h4> : null}
-                    <Box sx={{border: "solid black", borderRadius: "5px", maxHeight: "60vh", overflow: "scroll"}}>
+                    <Box sx={{ borderRadius: "5px", maxHeight: "60vh", overflow: "auto"}}>
                         <List sx={{margin: "auto", width: "90%"}}>
                             {filteredUsers.map((user) => {
                                 return (

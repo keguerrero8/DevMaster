@@ -16,11 +16,15 @@ function Diagrams({ user }) {
     };
 
     useEffect(() => {
+        let isActive = true
         fetch('/diagrams')
         .then(r => r.json())
         .then(res => {
-            setDiagrams(res)
+            if (isActive) {
+                setDiagrams(res)
+            }
         })
+        return () => { isActive = false }
     }, [isDiagramChange])
 
     // console.log(diagrams)
