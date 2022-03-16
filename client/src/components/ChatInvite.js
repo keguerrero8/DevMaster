@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { Box, Button, Typography, Modal, IconButton, List, ListItem, ListItemText, ListItemAvatar, Divider, Avatar, TextField } from '@mui/material';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 
-function ChatInvite({ user, currentConversation, setConvoUpdate }) {
+function ChatInvite({ user, users, currentConversation, setConvoUpdate }) {
   const [open, setOpen] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false)
-  const [users, setUsers] = useState([])
   const [searchValue, setSearchValue] = useState("")
   const [errors, setErrors] = useState(null)
   const handleOpen = () => setOpen(true);
@@ -14,14 +13,6 @@ function ChatInvite({ user, currentConversation, setConvoUpdate }) {
       setOpen(false)
       setShowUpdate(false)
   };
-
-  useEffect(() => {
-    fetch("/users")
-    .then(r => r.json())
-    .then(data => {
-        setUsers(data)
-        })
-  }, [])
 
   const style = {
     position: 'absolute',

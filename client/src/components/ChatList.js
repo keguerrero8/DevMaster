@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Typography, TextField, Modal, List, ListItem, ListItemText, ListItemAvatar, Divider, Avatar, AvatarGroup } from '@mui/material';
 import MessageIcon from '@mui/icons-material/Message';
 
@@ -11,17 +11,6 @@ function ChatList({setCurrentConversation, conversations, setConvoUpdate}) {
         setOpen(false)
         setShowUpdate(false)
     };
-
-    // useEffect(() => {
-    //     fetch('/conversations')
-    //     .then(r => r.json())
-    //     .then(res => {
-    //         // console.log(res)
-    //         setConversations(res)
-    //     })
-    // }, [convoUpdate])
-
-    // console.log(conversations)
 
     const style = {
         position: 'absolute',

@@ -35,11 +35,16 @@ class ConversationsController < ApplicationController
         if user
             convo = Conversation.find_by(id: params[:conversation_id])
             convo.users << user
-            # convo = user.conversations.create!(convo_params)
             render json: convo, status: :created
         else
             render json: {errors: ["No user logged in"]}, status: 401
         end
+    end
+
+    def destroy
+        convo = Conversation.find_by(id: params[:id])
+        convo.destroy
+        head :no_content
     end
 
     private

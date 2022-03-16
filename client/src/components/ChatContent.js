@@ -1,13 +1,16 @@
-import React, {useEffect, useState, useRef} from 'react'
-import { Box, Typography, TextField, Button, Avatar} from '@mui/material';
+import React, {useEffect, useState } from 'react'
+import { Box, Typography, TextField, Button, Avatar } from '@mui/material';
 import ChatInvite from './ChatInvite';
+import ChatDelete from './ChatDelete';
 import { createConsumer } from "@rails/actioncable"
 
 
-function ChatContent({ user, currentConversation, setConvoUpdate }) {
+function ChatContent({ user, currentConversation, setConvoUpdate, setCurrentConversation }) {
   const [formData, setFormData] = useState({ content: "" })
   const [messages, setMessages] = useState([])
   const [messageUpdate, setMessageUpdate] = useState(false)
+  const [users, setUsers] = useState([])
+  // console.log(messages)
 
   useEffect(() => {
     const cable = createConsumer("ws://localhost:3000/cable")
@@ -18,7 +21,6 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
     }
     const handlers = {
         received(data) {
-          console.log(data)
           setMessageUpdate(messageUpdate => !messageUpdate)
         },
         connected() {
@@ -34,7 +36,7 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
         console.log("unsubbing from ", currentConversation.id)
         subscription.unsubscribe()
     }
-  }, [messages])
+  }, [messages, currentConversation.id])
 
 
   useEffect(() => {
@@ -65,19 +67,21 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
     setFormData({...formData, [key]:value})
   }
 
-  // function handleDelete (e) {
-  //   console.log(e.target)
-  //   fetch(`/messages${diagram.id}`, {
-  //     method: 'DELETE'
-  //   }).then(res => setDiagramChange(!isDiagramChange))
-  // }
+  useEffect(() => {
+    fetch("/users")
+    .then(r => r.json())
+    .then(data => {
+        setUsers(data)
+        })
+  }, [])
 
   return (
     <>
       <Box sx={{border: "solid", borderRadius: "20px", width: "100%", height: "85vh", position: "relative", backgroundColor: "black"}}>
-        <ChatInvite user={user} currentConversation={currentConversation} setConvoUpdate={setConvoUpdate}/>
+        <ChatInvite user={user} users={users} currentConversation={currentConversation} setConvoUpdate={setConvoUpdate}/>
+        <ChatDelete currentConversation={currentConversation} setConvoUpdate={setConvoUpdate} setCurrentConversation={setCurrentConversation}/>
         <Box sx={{width: "80%", height: "100%", margin: "10px auto", textAlign: "center"}}>
-          <Typography component="h1" variant="h4" sx={{my: "20px"}} color="white">Conversation: <span style={{color: "#14a37f"}}>{currentConversation.title} </span></Typography>
+          <Typography component="h1" variant="h4" sx={{my: "30px"}} color="white">Conversation: <span style={{color: "#14a37f"}}>{currentConversation.title} </span></Typography>
           <Box sx={{ height: "80%", display: "flex", flexDirection: "column", overflow: "auto"}}>
             {messages.filter(m => m.content !== null).map(m => {
               if (m.user_id === user.id) {
@@ -92,10 +96,11 @@ function ChatContent({ user, currentConversation, setConvoUpdate }) {
                 )
               }
               return (
-                <Box sx={{maxWidth: "60%", alignSelf: "flex-end", my: "3px"}} key={m.id}>
+                <Box sx={{maxWidth: "60%", alignSelf: "flex-end", my: "3px", position: "relative"}} key={m.id}>
                     <Box sx={{backgroundColor: "white", padding: "15px", borderRadius: "30px 30px 1px 30px"}}>
                       <Typography component="div" variant="h7" >{m.content}</Typography>
                     </Box>
+                    <Avatar alt={users.find(user => user.id === m.user_id) ? users.find(user => user.id === m.user_id).username : "Loading"} src={users.find(user => user.id === m.user_id) ? users.find(user => user.id === m.user_id).avatar : "Loading"} sx={{height: 20, width: 20, position: "absolute", right: "0"}}/>
                 </Box>
               )
             })}

@@ -27,7 +27,7 @@ function ChatPage({ user }) {
                 <ChatList setCurrentConversation={setCurrentConversation} conversations={conversations} setConvoUpdate={setConvoUpdate}/>
             </Grid>
             <Grid item xs={8.5}>
-                {user && currentConversation? <ChatContent user={user} currentConversation={currentConversation} setConvoUpdate={setConvoUpdate}/> : (
+                {user && currentConversation? <ChatContent user={user} setCurrentConversation={setCurrentConversation} currentConversation={currentConversation} setConvoUpdate={setConvoUpdate}/> : (
                 <Box sx={{textAlign: "center"}}>
                     <Box sx={{mt: "30px"}}>
                         <Typography component="h2" variant="h4">No active chats currently selected</Typography>

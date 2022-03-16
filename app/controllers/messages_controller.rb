@@ -2,19 +2,11 @@ class MessagesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
     
     def create
-        # user = User.find_by(id: session[:user_id])
-        # if user
-        #     message = Message.create!(message_params)
-        #     convo = Conversation.find_by(id: params[:conversation_id])
-        #     convo.messages << message
-        #     render json: message, status: :created
-        # else
-        #     render json: {errors: ["No user logged in"]}, status: 401
-        # end
-
         user = User.find_by(id: session[:user_id])
         if user
             message = user.messages.create!(message_params)
+            conversation = Conversation.find(message[:conversation_id])
+            ConversationChannel.broadcast_to(conversation, message)
             render json: message, status: :created
         else
             render json: {errors: ["No user logged in"]}, status: 401
