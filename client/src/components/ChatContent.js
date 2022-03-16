@@ -13,7 +13,7 @@ function ChatContent({ user, currentConversation, setConvoUpdate, setCurrentConv
   // console.log(messages)
 
   useEffect(() => {
-    const cable = createConsumer("ws://localhost:3000/cable")
+    const cable = createConsumer("ws://devmaster-kg.herokuapp.com//cable")
 
     const paramsToSend = {
         channel: "ConversationChannel",
