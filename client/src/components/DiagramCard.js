@@ -18,7 +18,7 @@ function DiagramCard({ diagram , isDiagramChange, setDiagramChange, user }) {
         <Card sx={{ backgroundColor: "black", '&:hover': {transform: "scale(1.1)"}, position: "relative" }} >
             <DiagramShare diagram={diagram} user={user} setDiagramChange={setDiagramChange}/>
             <CardContent sx={{textAlign: "center"}}>
-                <AccountTree color="secondary" sx={{ fontSize: 100 }}/>
+                <AccountTree color="secondary" sx={{ fontSize: 80 }}/>
                 <Typography sx={{ fontSize: 18 }} color="white" gutterBottom>
                 {diagram.name}
                 </Typography>

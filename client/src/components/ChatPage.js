@@ -23,10 +23,10 @@ function ChatPage({ user }) {
   return (
     <Box sx={{width: "95%", margin: "25px auto"}}>
         <Grid container spacing={2}>
-            <Grid item xs={3.5}>
+            <Grid item xs={12} md={3.5}>
                 <ChatList setCurrentConversation={setCurrentConversation} conversations={conversations} setConvoUpdate={setConvoUpdate}/>
             </Grid>
-            <Grid item xs={8.5}>
+            <Grid item xs={12} md={8.5}>
                 {user && currentConversation? <ChatContent user={user} setCurrentConversation={setCurrentConversation} currentConversation={currentConversation} setConvoUpdate={setConvoUpdate}/> : (
                 <Box sx={{textAlign: "center"}}>
                     <Box sx={{mt: "30px"}}>
