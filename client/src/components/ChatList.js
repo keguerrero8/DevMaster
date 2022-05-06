@@ -61,7 +61,7 @@ function ChatList({setCurrentConversation, conversations, setConvoUpdate}) {
             onClick={handleOpen}
         >
             <MessageIcon sx={{mr: 1, fontSize: "1rem"}}></MessageIcon>
-            <Typography component="h3" variant="subtitle2" sx={{ color: "white", fontSize: "min(1.3vw, 15px)" }}>New Conversation</Typography>
+            <Typography component="h3" variant="subtitle2" sx={{ color: "white", fontSize: "min(1.3vw, 15px)" }}>New Convo</Typography>
         </Button>
         <Typography component="h1" variant="h4" sx={{fontWeight: "bold", color: "white", my: "20px"}}>Chats</Typography>
         <List sx={{margin: "auto", width: "90%", overflow: "auto"}}>
