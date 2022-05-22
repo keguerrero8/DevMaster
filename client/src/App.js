@@ -26,7 +26,7 @@ function App( {theme}) {
       <NavBar user={user} setUser={setUser}/>
       <Switch>
         <Route exact path="/">
-          <HomePage user={user}/>
+          <HomePage user={user} theme={theme}/>
         </Route>
         <Route exact path="/login">
           <Login setUser={setUser} theme={theme}/>
