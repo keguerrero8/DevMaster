@@ -31,8 +31,7 @@ function HomePage({user, theme}) {
                      gutterBottom
                      sx={{
                         fontSize: {
-                            xs: "1rem",
-                            sm: "1rem",
+                            xs: "1.1rem",
                             md: "1.2rem",
                         },   
                      }}

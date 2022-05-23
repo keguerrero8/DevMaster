@@ -3,7 +3,7 @@ import DiagramCard from './DiagramCard';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Typography, Modal, Divider, TextField, Button, Box, Grid } from '@mui/material';
 
-function Diagrams({ user }) {
+function Diagrams({ user, theme }) {
     const [showUpdate, setShowUpdate] = useState(false)
     const [diagrams, setDiagrams] = useState({solo: [], share: []})
     const [formData, setFormData] = useState({ name: "" })
@@ -34,7 +34,11 @@ function Diagrams({ user }) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: {
+            xs: "70%",
+            md: "40%",
+            lg: "30%"
+        },
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -67,12 +71,27 @@ function Diagrams({ user }) {
             <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, mr: 5 }}
+                sx={{ 
+                    my: 3,
+                    fontSize: {
+                        xs: "0.8rem",
+                        sm: "0.9rem",
+                        lg: "1rem"
+                    }
+                }}
                 onClick={handleOpen}
                 color="secondary"
             >
-                Create A New Diagram
-                <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
+                Create New Diagram
+                <AddCircleIcon sx={{
+                    ml: 1,
+                    fontSize: {
+                        xs: "1rem",
+                        lg: "1.2rem"
+                    }
+                }}>
+
+                </AddCircleIcon>
             </Button>
         </Box>
         <Modal
@@ -113,7 +132,7 @@ function Diagrams({ user }) {
         <Typography component="h1" variant="h4">My Diagrams</Typography>
         <Box sx={{margin: "30px auto"}}>
             {diagrams.solo.length > 0 ? (
-                <Grid container spacing={4}>
+                <Grid container spacing={{xs: 4, md: 8, lg: 4}}>
                     {diagrams.solo.map((diagram) => <DiagramCard
                         user={user}  
                         diagram={diagram} 
@@ -127,10 +146,14 @@ function Diagrams({ user }) {
             )}
         </Box>
         <Divider sx={{my: "30px"}}/>
-        <Typography component="h1" variant="h4">Shared Diagrams</Typography>
+        <Typography component="h1" variant="h4"
+            sx={{fontSize: "2rem"}}
+        >
+            Shared Diagrams
+        </Typography>
         <Box sx={{margin: "30px auto"}}>
             {diagrams.share.length > 0 ? (
-                <Grid container spacing={4}>
+                <Grid container spacing={{xs: 4, md: 8, lg: 4}}>
                     {diagrams.share.map((diagram) => <DiagramCard
                         user={user}  
                         diagram={diagram} 

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles';
-import {theme} from "./styles/styles"
+import {theme} from "./styles/styles";
 
 // #1de9b6
 // let theme = createTheme({

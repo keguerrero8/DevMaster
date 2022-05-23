@@ -154,8 +154,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
         <Box sx={{width: "90%", margin: "20px auto", textAlign: "center"}}>
             <Typography component="h1" variant="h4" sx={{marginBottom: "10px"}}>About this tool:</Typography>
             <Box sx={{margin: "40px auto"}}>
-                <List dense={true} sx={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "10px"}}>
-                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                <List dense={true} 
+                    sx={{
+                        display: "flex",
+                        flexDirection: {
+                            xs: "column",
+                            md: "row" 
+                        },
+                        justifyContent: "center", 
+                        alignItems: "center", 
+                        marginBottom: "10px"
+                    }}>
+                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}, maxWidth: "60%"}}>
                         <ListItemIcon>
                             <AddIcon color="secondary"/>
                         </ListItemIcon>
@@ -163,7 +173,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
                             primary="Create nodes"
                         />
                     </ListItem>
-                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                   <ListItem sx={{'&:hover': {transform: "scale(1.1)"}, maxWidth: "60%"}}>
                         <ListItemIcon>
                             <CableIcon color="secondary"/>
                         </ListItemIcon>
@@ -171,7 +181,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
                             primary="Drag connections between nodes"
                         />
                     </ListItem>
-                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                   <ListItem sx={{'&:hover': {transform: "scale(1.1)"}, maxWidth: "60%"}}>
                         <ListItemIcon>
                             <DeleteIcon color="secondary"/>
                         </ListItemIcon>
@@ -179,7 +189,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
                             primary="Delete nodes with backspace key"
                         />
                     </ListItem>
-                    <ListItem sx={{'&:hover': {transform: "scale(1.1)"}}}>
+                   <ListItem sx={{'&:hover': {transform: "scale(1.1)"}, maxWidth: "60%"}}>
                         <ListItemIcon>
                             <MoveDownIcon color="secondary"/>
                         </ListItemIcon>
@@ -189,8 +199,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
                     </ListItem>
                 </List>
             </Box>
-            <input type="text" name="title" onChange={e => setName(e.target.value)} placeholder="Enter Node Name" id="create-node" />
-            <Button variant="contained" size="small" color="primary" onClick={addNode}>Create Node</Button>
+            <Box sx={{
+                display: {
+                    xs: "flex",
+                    sm: "block"
+                },
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem"
+            }}>
+                <input type="text" name="title" onChange={e => setName(e.target.value)} placeholder="Enter Node Name" id="create-node" style={{maxWidth: "50%", textAlign: "center"}}/>
+                <Button variant="contained" size="small" color="primary" onClick={addNode} sx={{maxWidth: "50%"}} >Create Node</Button>
+            </Box>
         </Box>
         <Modal
         open={open}

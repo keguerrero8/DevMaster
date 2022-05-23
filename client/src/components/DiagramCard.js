@@ -14,11 +14,15 @@ function DiagramCard({ diagram , isDiagramChange, setDiagramChange, user }) {
     }
 
   return (
-    <Grid item xs={4} >
+    <Grid item xs={12} md={6} lg={4} >
         <Card sx={{ backgroundColor: "black", '&:hover': {transform: "scale(1.1)"}, position: "relative" }} >
             <DiagramShare diagram={diagram} user={user} setDiagramChange={setDiagramChange}/>
             <CardContent sx={{textAlign: "center"}}>
-                <AccountTree color="secondary" sx={{ fontSize: 80 }}/>
+                <AccountTree color="secondary" sx={{ fontSize: {
+                    xs: 60,
+                    sm: 70,
+                    lg: 80
+                } }}/>
                 <Typography sx={{ fontSize: 18 }} color="white" gutterBottom>
                 {diagram.name}
                 </Typography>
