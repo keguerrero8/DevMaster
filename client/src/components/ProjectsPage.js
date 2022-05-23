@@ -62,13 +62,23 @@ import BarGraph from './BarGraph'
       };
   
     return (
-        <Box >
-            <Box sx={{width: "90%", margin: "auto", textAlign: "center"}}>
-                <h2 style={{marginBottom: "40px"}}>Project Activity Summary</h2>
+        <Box sx={{width: "100%"}}>
+            <Box 
+                sx={{
+                    width: "100%",
+                    display: {
+                        xs: "none",
+                        sm: "block"
+                    }
+                }}
+            >
+                <Box sx={{width: "90%", margin: "auto", textAlign: "center"}}>
+                    <h2 style={{marginBottom: "40px"}}>Project Activity Summary</h2>
+                </Box>
+                <BarGraph projects={projects}/>
+                <Divider sx={{width: "90%", margin: "30px auto"}}/>
             </Box>
-            <BarGraph projects={projects}/>
-            <Divider sx={{width: "90%", margin: "30px auto"}}/>
-            <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
+            <Box sx={{width: "90%", margin: "30px auto", display: "flex"}}>
                 <Typography component="h1" variant="h4" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
                 <Button
                 type="submit"

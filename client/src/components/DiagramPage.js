@@ -163,7 +163,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
                         },
                         justifyContent: "center", 
                         alignItems: "center", 
-                        marginBottom: "10px"
+                        marginBottom: "10px",
+                        gap: "1rem"
                     }}>
                     <ListItem sx={{'&:hover': {transform: "scale(1.1)"}, maxWidth: "60%"}}>
                         <ListItemIcon>
