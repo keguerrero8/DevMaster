@@ -23,7 +23,11 @@ function ChatDelete({currentConversation, setConvoUpdate, setCurrentConversation
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: {
+      xs: "70%",
+      md: "40%",
+      lg: "30%"
+    },
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -34,7 +38,16 @@ function ChatDelete({currentConversation, setConvoUpdate, setCurrentConversation
   return (
     <>
         <IconButton onClick={handleOpen} sx={{position: "absolute", left: "2px", top: "2px"}} >
-            <ClearIcon color="secondary" sx={{ fontSize: 30 }}/>
+            <ClearIcon 
+            color="secondary" 
+            sx={{ 
+              fontSize: {
+                xs: "1.5rem",
+                md: "1.7rem",
+                lg: "2rem"
+              }
+            }}
+            />
         </IconButton>
         <Modal
                 open={open}

@@ -152,7 +152,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
     return (
         <>
         <Box sx={{width: "90%", margin: "20px auto", textAlign: "center"}}>
-            <Typography component="h1" variant="h4" sx={{marginBottom: "10px"}}>About this tool:</Typography>
+            <Typography component="h1" variant="h4" sx={{marginBottom: "10px", fontSize: {xs: "1.5rem", sm: "2rem"}}}>About this Tool:</Typography>
             <Box sx={{margin: "40px auto"}}>
                 <List dense={true} 
                     sx={{

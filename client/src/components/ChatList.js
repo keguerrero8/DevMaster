@@ -17,7 +17,11 @@ function ChatList({setCurrentConversation, conversations, setConvoUpdate}) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: {
+            xs: "70%",
+            md: "40%",
+            lg: "30%"
+        },
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -55,13 +59,28 @@ function ChatList({setCurrentConversation, conversations, setConvoUpdate}) {
     <Box sx={{width: "100%", height: "85vh", textAlign: "center", borderRadius: "20px", backgroundColor: "black"}}>
         <Button
             variant="contained"
-            sx={{ my: "20px", mb: 2}}
+            sx={{ 
+                my: 3,
+                fontSize: {
+                    xs: "0.8rem",
+                    md: "0.9rem"
+                }
+            }}
             color="secondary"
             size="small"
             onClick={handleOpen}
         >
-            <MessageIcon sx={{mr: 1, fontSize: "1rem"}}></MessageIcon>
-            <Typography component="h3" variant="subtitle2" sx={{ color: "white", fontSize: "min(1.3vw, 15px)" }}>New Conversation</Typography>
+            New Conversation
+            <MessageIcon 
+                sx={{
+                    ml:"5px", 
+                    fontSize: {
+                        xs: "1rem",
+                        lg: "1.2rem"
+                    }
+                }}
+            >
+            </MessageIcon>
         </Button>
         <Typography component="h1" variant="h4" sx={{fontWeight: "bold", color: "white", my: "20px"}}>Chats</Typography>
         <List sx={{margin: "auto", width: "90%", overflow: "auto"}}>
