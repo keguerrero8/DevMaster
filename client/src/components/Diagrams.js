@@ -84,7 +84,7 @@ function Diagrams({ user, theme }) {
             >
                 Create New Diagram
                 <AddCircleIcon sx={{
-                    ml: 1,
+                    ml: "5px",
                     fontSize: {
                         xs: "1rem",
                         lg: "1.2rem"

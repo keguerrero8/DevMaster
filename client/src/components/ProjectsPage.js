@@ -53,7 +53,11 @@ import BarGraph from './BarGraph'
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: {
+            xs: "70%",
+            md: "40%",
+            lg: "30%"
+        },
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -78,18 +82,35 @@ import BarGraph from './BarGraph'
                 <BarGraph projects={projects}/>
                 <Divider sx={{width: "90%", margin: "30px auto"}}/>
             </Box>
-            <Box sx={{width: "90%", margin: "30px auto", display: "flex"}}>
-                <Typography component="h1" variant="h4" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
+            <Box sx={{textAlign: "center"}}>                
                 <Button
                 type="submit"
                 variant="contained"
-                sx={{ml: "auto", mb: 3}}
+                sx={{
+                    my: 3,
+                    fontSize: {
+                        xs: "0.8rem",
+                        sm: "0.9rem",
+                        md: "1rem"
+                    }
+                }}
                 onClick={handleOpen}
                 color="secondary"
                 >
-                    Create New Project Folder
-                    <AddCircleIcon sx={{ml: 1}}></AddCircleIcon>
+                    Create Project Folder
+                    <AddCircleIcon 
+                        sx={{
+                            ml: "5px",
+                            fontSize: {
+                                xs: "1rem",
+                                lg: "1.2rem"
+                            }
+                            }}>
+                    </AddCircleIcon>
                 </Button>
+            </Box>
+            <Box sx={{width: "90%", margin: "auto", display: "flex"}}>
+                <Typography component="h1" variant="h4" sx={{mr: "auto", mb: 3}}>My Projects</Typography>
             </Box>
             <Modal
                 open={open}
@@ -135,11 +156,6 @@ import BarGraph from './BarGraph'
                         />)}
                     </>
                 ) : <Typography component="h1" variant="h6">You have no Personal Projects</Typography>}
-                {/* {projects.map((project) => <ProjectFolder 
-                user={user} key={project.id} 
-                project={project} 
-                setProjectUpdate={setProjectUpdate}
-                />)} */}
             </Box>
             <Divider sx={{width: "90%", margin: "30px auto"}}/>
             <Box sx={{width: "90%", margin: "auto", display: "flex"}}>

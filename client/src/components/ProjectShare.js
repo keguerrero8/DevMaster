@@ -47,7 +47,11 @@ function ProjectShare({ project, user, setProjectUpdate }) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 400,
+        width: {
+            xs: "70%",
+            md: "40%",
+            lg: "30%"
+        },
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -90,7 +94,7 @@ function ProjectShare({ project, user, setProjectUpdate }) {
 
   return (
     <>
-        <IconButton sx={{position: "absolute", right: "2px", top: "2px"}} onClick={handleOpen}>
+        <IconButton sx={{position: "absolute", right: "0px", top: "0px"}} onClick={handleOpen}>
             <ShareIcon color="secondary" sx={{ fontSize: 25 }}/>
         </IconButton>
         <Modal

@@ -95,42 +95,86 @@ import ProjectShare from './ProjectShare';
             expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
-            sx={{backgroundColor: "black"}}
+            sx={{backgroundColor: "black", overflow: "scroll"}}
             >
                 <Box sx={{ display: "flex", justifyContent: "start", alignItems: "center", width: "90%"}}>
-                    <FolderIcon sx={{color: "white"}}/>
-                    <Typography component="h1" variant="h6" sx={{ minWidth: '33%', flexShrink: 0, color: "white", fontWeight: "bold", mx: "15px"}}>
+                    <FolderIcon 
+                    sx={{
+                        fontSize: {
+                            xs: "1rem",
+                            md: "1.5rem"
+                        },
+                        color: "white",
+                        display: {
+                            xs: "none",
+                            sm: "block"
+                        }
+                    }}/>
+                    <Typography 
+                    component="h1" 
+                    variant="h6" 
+                    sx={{ 
+                        minWidth: '33%', 
+                        flexShrink: 0, 
+                        color: "white", 
+                        fontWeight: "bold", 
+                        fontSize: {
+                            xs: "0.9rem",
+                            sm: "1rem",
+                            md: "1.5rem"
+                        },
+                        mx: {
+                            xs: "10px",
+                            md: "15px"
+                        }
+                    }}>
                         {title}
                     </Typography>
-                    <Button variant="outlined" size="small" color="secondary" onClick={handleDelete} sx={{zIndex: "30"}}>Delete</Button>
+                    <Button 
+                        variant="outlined" 
+                        size="small" 
+                        color="secondary" 
+                        onClick={handleDelete} 
+                        sx={{
+                            zIndex: "30",
+                            fontSize: {
+                                xs: "0.7rem",
+                                sm: "1rem",
+                            },
+                        }}
+                    >
+                        Delete
+                    </Button>
                 </Box>
             </AccordionSummary>
-            <AccordionDetails sx={{position: "relative"}}>
-                <ProjectShare project={project} user={user} setProjectUpdate={setProjectUpdate}/>
-                <Box sx={{my: "25px", display: "flex", justifyContent: "center"}}>
-                    <div>
-                        <TextField 
-                                placeholder="New Task" 
-                                variant="standard" 
-                                color="secondary" 
-                                onChange={onChangeAddTask} 
-                                value={formData.content}
-                                name="content"
-                        />
-                        <Button sx={{ml: "20px"}} variant="contained" onClick={handleAddTask}>Create Task</Button>
-                    </div>
-                    <div style={{marginLeft: "80px"}}>
-                        {user ? user.github_username !== null ? <GithubSearch user={user} project={project} setProjectUpdate={setProjectUpdate}/> : null : null}
-                    </div>
+            <AccordionDetails sx={{ overflow: "scroll"}}>
+                <Box sx={{width: "1200px", margin: "auto", position: "relative"}}>
+                    <ProjectShare project={project} user={user} setProjectUpdate={setProjectUpdate}/>
+                    <Box sx={{my: "25px", display: "flex", justifyContent: "center"}}>
+                        <div>
+                            <TextField 
+                                    placeholder="New Task" 
+                                    variant="standard" 
+                                    color="secondary" 
+                                    onChange={onChangeAddTask} 
+                                    value={formData.content}
+                                    name="content"
+                            />
+                            <Button sx={{ml: "20px"}} variant="contained" onClick={handleAddTask}>Create Task</Button>
+                        </div>
+                        <div style={{marginLeft: "80px"}}>
+                            {user ? user.github_username !== null ? <GithubSearch user={user} project={project} setProjectUpdate={setProjectUpdate}/> : null : null}
+                        </div>
+                    </Box>
+                    <DragDropContext onDragEnd={onDragEnd}>
+                        <div style={{display: "flex", justifyContent: "center"}}>
+                            {columns.map(column => {
+                                const filteredTasks = tasks.filter(task => task.status === column.title)
+                                return <Column key={column.id} column={column} tasks={filteredTasks} setTaskUpdate={setTaskUpdate} setProjectUpdate={setProjectUpdate}>{column.title}</Column>
+                            })}
+                        </div>
+                    </DragDropContext>
                 </Box>
-                <DragDropContext onDragEnd={onDragEnd}>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        {columns.map(column => {
-                            const filteredTasks = tasks.filter(task => task.status === column.title)
-                            return <Column key={column.id} column={column} tasks={filteredTasks} setTaskUpdate={setTaskUpdate} setProjectUpdate={setProjectUpdate}>{column.title}</Column>
-                        })}
-                    </div>
-                </DragDropContext>
             </AccordionDetails>
         </Accordion>
     );
