@@ -95,7 +95,7 @@ import ProjectShare from './ProjectShare';
             expandIcon={<ExpandMoreIcon sx={{color: "white"}}/>}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
-            sx={{backgroundColor: "black", overflow: "scroll"}}
+            sx={{backgroundColor: "black"}}
             >
                 <Box sx={{ display: "flex", justifyContent: "start", alignItems: "center", width: "90%"}}>
                     <FolderIcon 
@@ -147,8 +147,8 @@ import ProjectShare from './ProjectShare';
                     </Button>
                 </Box>
             </AccordionSummary>
-            <AccordionDetails sx={{ overflow: "scroll"}}>
-                <Box sx={{width: "1200px", margin: "auto", position: "relative"}}>
+            <AccordionDetails sx={{ overflow: "auto"}}>
+                <Box sx={{ width: {xs: "1000px", md: "100%"}, margin: "auto", position: "relative" }}>
                     <ProjectShare project={project} user={user} setProjectUpdate={setProjectUpdate}/>
                     <Box sx={{my: "25px", display: "flex", justifyContent: "center"}}>
                         <div>

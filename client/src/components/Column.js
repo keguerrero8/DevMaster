@@ -6,8 +6,7 @@ function Column({column, tasks, setTaskUpdate, setProjectUpdate}) {
   
     return (
         <div style={{margin: "8px", border: "1px solid", borderRadius: "10px", width: "30%", minHeight: "200px", textAlign: "center"}}>
-            <div style={{backgroundColor: column.color, width: "90%", margin: "5px auto", padding: "8px", fontWeight: "bold", fontSize: "25px", border: "solid", borderRadius: "5px"}}>
-                {/* <h1 style={{padding: "8px"}}>{column.title}</h1> */}
+            <div style={{backgroundColor: column.color, width: "85%", margin: "5px auto", padding: "8px", fontWeight: "bold", fontSize: "1.5rem", border: "solid", borderRadius: "5px"}}>
                 {column.title}
             </div>
             <Droppable droppableId={column.title}>
