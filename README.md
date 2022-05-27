@@ -1,13 +1,11 @@
-# <Your-Project-Title>
+# DevMaster
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+DevMaster is a worklfow and project management application tailored for software engineers.  As a previous system engineer, I worked closely with software engineers to communicate and review ideas for a path forward before feature implementation.  Additionally, features needed to be complete within sprints between a small group of engineers.  This application was made with inspiration from the Scrum framework, to facilitate communication of design ideas between engineers while also providing tools to manage the status of a project all in one application. 
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+![Screen Shot 2022-05-27 at 7 42 33 AM](https://user-images.githubusercontent.com/91296112/170692953-5e11c9bc-85ed-469d-baf6-eae959b9deb5.png)
+
 
 ## Table of Contents (Optional)
 
@@ -48,20 +46,14 @@ The last section of a high-quality README file is the license. This lets other d
 
 🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
 
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
 
 ## Features
 
 If your project has a lot of features, list them here.
 
-## How to Contribute
+## Back End Architecture
 
 If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
 
-## Tests
+## Front End Architecture
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
