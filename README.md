@@ -2,7 +2,7 @@
 
 ## Description
 
-DevMaster is a workflow and project management application tailored for software engineers.  As a previous system engineer, I worked closely with software engineers to communicate and review ideas for a path forward before feature implementation.  Additionally, features needed to be complete within sprints between a small group of engineers.  This application was made with inspiration from the Scrum framework, to facilitate communication of design ideas between engineers while also providing tools to manage the status of a project all in one application. 
+DevMaster is a workflow and project management application tailored for software engineers.  As a previous system engineer, I worked closely with software engineers to communicate and review ideas for a path forward before feature implementation.  Additionally, features needed to be complete within sprints between a small group of engineers.  This application was made with inspiration from the Scrum framework, to facilitate communication of design ideas between engineers while also providing tools to manage the status of a project all in one application. Live site can be found at http://devmaster-kg.herokuapp.com
    
 ![Devmaster](https://user-images.githubusercontent.com/91296112/172361100-f461b0ca-92bf-433f-bbd3-82ed600fff39.gif)
 
